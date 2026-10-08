@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WiK1ngST · Hunter License</title>
+    <title>WiK1ngST · Thẻ Thợ Săn</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -38,6 +38,8 @@
         --r-a: #c56bff;
         --r-b: #7b83ff;
         --r-c: #4fd1c5;
+        --r-d: #3ecf8e;
+        --r-e: #6b7591;
 
         --cut: 14px;
         --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -110,7 +112,7 @@
         z-index: 1;
         max-width: 1120px;
         margin: 0 auto;
-        padding: 40px 20px 56px;
+        padding: 64px 20px 56px;
       }
 
       .grid {
@@ -268,6 +270,8 @@
       .rank[data-r="A"] { --rc: var(--r-a); }
       .rank[data-r="B"] { --rc: var(--r-b); }
       .rank[data-r="C"] { --rc: var(--r-c); }
+      .rank[data-r="D"] { --rc: var(--r-d); }
+      .rank[data-r="E"] { --rc: var(--r-e); }
 
       /* ---------- License ---------- */
       .license {
@@ -397,8 +401,15 @@
         --s: 34px;
       }
 
+      .stat > div {
+        min-width: 0;
+      }
+
       .stat b {
         display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         font-family: var(--mono);
         font-size: 12px;
         letter-spacing: 0.12em;
@@ -458,37 +469,248 @@
         font-weight: 500;
       }
 
-      /* ---------- Radar ---------- */
-      .radarWrap {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        gap: 14px;
+      /* ---------- Skill status ---------- */
+      .skillHead {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-bottom: 18px;
+      }
+
+      .skillLv {
+        font-size: 34px;
+        font-weight: 700;
+        line-height: 1;
+        color: var(--blue);
+        text-shadow: 0 0 14px rgba(77, 141, 255, 0.6);
+      }
+
+      .skillName {
+        display: block;
+        margin-top: 4px;
+        font-size: 22px;
+        font-weight: 700;
+      }
+
+      .skillSub {
+        margin-top: 4px;
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .skillSub .k {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        color: var(--dim);
+        margin-right: 8px;
+      }
+
+      .skillSub .title {
+        color: var(--cyan);
+        font-weight: 600;
+      }
+
+      .overallBox {
+        display: flex;
         align-items: center;
+        gap: 14px;
+        text-align: right;
       }
 
-      .radarWrap svg {
-        width: 100%;
-        max-width: 230px;
-        height: auto;
-        overflow: visible;
+      .overallBox b {
+        display: block;
+        font-size: 26px;
+        line-height: 1.1;
       }
 
-      .radarSide {
-        display: grid;
-        gap: 10px;
-        justify-items: start;
-      }
-
-      .radarSide .rank {
-        --s: 40px;
-      }
-
-      .legend {
+      .overallBox small {
         font-family: var(--mono);
         font-size: 10px;
-        line-height: 1.7;
+        letter-spacing: 0.12em;
         color: var(--dim);
-        letter-spacing: 0.04em;
+      }
+
+      .overallBox .rank {
+        --s: 52px;
+      }
+
+      .scale {
+        margin-bottom: 20px;
+      }
+
+      .scaleRow {
+        display: grid;
+        gap: 3px;
+      }
+
+      .scaleLetters span {
+        text-align: center;
+        font-weight: 700;
+        font-size: 15px;
+        color: var(--sc);
+      }
+
+      .scaleTrack {
+        position: relative;
+        margin: 6px 0 4px;
+      }
+
+      .scaleBar span {
+        height: 6px;
+        background: var(--sc);
+        opacity: 0.85;
+      }
+
+      .scaleNums span {
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--dim);
+      }
+
+      .scaleMarker {
+        position: absolute;
+        top: -5px;
+        width: 2px;
+        height: 16px;
+        margin-left: -1px;
+        background: #fff;
+        box-shadow: 0 0 10px var(--cyan);
+      }
+
+      .scaleYou {
+        position: relative;
+        height: 16px;
+        margin-top: 2px;
+      }
+
+      .scaleYou span {
+        position: absolute;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        font-family: var(--mono);
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--cyan);
+      }
+
+      .skillBody {
+        display: grid;
+        grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr);
+        gap: 18px;
+        align-items: stretch;
+      }
+
+      .skillRows {
+        display: grid;
+        gap: 6px;
+      }
+
+      .skillRow {
+        display: grid;
+        grid-template-columns: 34px auto minmax(0, 1fr) 44px auto;
+        gap: 12px;
+        align-items: center;
+        padding: 8px 12px;
+        background: rgba(77, 141, 255, 0.05);
+        border: 1px solid rgba(77, 141, 255, 0.12);
+        transition: background 160ms ease, border-color 160ms ease;
+      }
+
+      .skillRow:hover {
+        background: rgba(77, 141, 255, 0.1);
+        border-color: rgba(94, 225, 255, 0.35);
+      }
+
+      .skillKey {
+        font-family: var(--mono);
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+      }
+
+      .skillRow .rank {
+        --s: 30px;
+      }
+
+      .skillInfo {
+        min-width: 0;
+      }
+
+      .skillInfo strong {
+        font-size: 16px;
+      }
+
+      .skillInfo .tools {
+        margin-left: 8px;
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--muted);
+      }
+
+      .skillInfo .line {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .skillInfo small {
+        display: block;
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.06em;
+        color: var(--dim);
+      }
+
+      .skillBar {
+        height: 3px;
+        margin-top: 4px;
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .skillBar i {
+        display: block;
+        height: 100%;
+        background: var(--rc);
+        box-shadow: 0 0 8px var(--rc);
+      }
+
+      .skillVal {
+        text-align: right;
+        font-size: 22px;
+        font-weight: 700;
+      }
+
+      .skillIcons {
+        display: flex;
+        gap: 8px;
+        padding: 5px 10px;
+        border: 1px solid rgba(77, 141, 255, 0.3);
+        background: rgba(5, 10, 24, 0.5);
+      }
+
+      .skillIcons i {
+        width: 14px;
+        text-align: center;
+        font-size: 13px;
+        color: var(--cyan);
+      }
+
+      .radarBox {
+        display: grid;
+        place-items: center;
+        padding: 10px;
+        background: rgba(5, 10, 24, 0.45);
+        border: 1px solid rgba(77, 141, 255, 0.14);
+      }
+
+      .radarBox svg {
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+        overflow: visible;
       }
 
       .poly {
@@ -501,52 +723,6 @@
           transform: scale(0);
           opacity: 0;
         }
-      }
-
-      /* ---------- Arsenal ---------- */
-      .arsenal {
-        display: grid;
-        gap: 12px;
-      }
-
-      .slotRow {
-        display: grid;
-        grid-template-columns: 96px 1fr;
-        gap: 12px;
-        align-items: center;
-      }
-
-      .slots {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-
-      .slot {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 6px 10px;
-        font-family: var(--mono);
-        font-size: 12px;
-        color: var(--text);
-        background: rgba(77, 141, 255, 0.06);
-        border: 1px solid rgba(77, 141, 255, 0.28);
-        clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
-        transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
-      }
-
-      .slot i {
-        font-size: 14px;
-        color: var(--cyan);
-        width: 16px;
-        text-align: center;
-      }
-
-      .slot:hover {
-        background: rgba(94, 225, 255, 0.14);
-        border-color: var(--cyan);
-        transform: translateY(-2px);
       }
 
       /* ---------- Quest (socials) ---------- */
@@ -932,6 +1108,13 @@
         background: rgba(255, 255, 255, 0.05);
       }
 
+      .agentRow > div {
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
       .agentRow strong {
         font-size: 15px;
       }
@@ -983,7 +1166,10 @@
       }
 
       .match small {
+        display: block;
         white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         font-family: var(--mono);
         font-size: 10.5px;
         color: var(--muted);
@@ -1003,33 +1189,6 @@
         color: var(--dim);
       }
 
-      .otherGames {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        flex-wrap: wrap;
-        margin-top: 16px;
-      }
-
-      .game {
-        display: inline-flex;
-        align-items: baseline;
-        gap: 10px;
-        padding: 6px 12px;
-        background: rgba(77, 141, 255, 0.05);
-        border-left: 3px solid var(--gc);
-      }
-
-      .game strong {
-        font-size: 16px;
-      }
-
-      .game small {
-        font-family: var(--mono);
-        font-size: 10.5px;
-        color: var(--dim);
-      }
-
       .arise {
         font-family: var(--head);
         font-weight: 700;
@@ -1040,6 +1199,54 @@
         text-shadow: 0 0 14px rgba(139, 123, 255, 0.9);
         margin: 28px 0 0;
         opacity: 0.8;
+      }
+
+      /* ---------- Language switch ---------- */
+      .langSwitch {
+        position: fixed;
+        top: 14px;
+        right: 14px;
+        z-index: 10;
+        display: flex;
+        padding: 1px;
+        background: linear-gradient(160deg, var(--line-hi), var(--line));
+        clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+      }
+
+      .langSwitch button {
+        appearance: none;
+        border: 0;
+        margin: 0;
+        padding: 7px 12px;
+        min-width: 44px;
+        min-height: 32px;
+        font-family: var(--mono);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        color: var(--muted);
+        background: var(--panel2);
+        cursor: pointer;
+        transition: color 160ms ease, background 160ms ease;
+      }
+
+      .langSwitch button + button {
+        border-left: 1px solid var(--line);
+      }
+
+      .langSwitch button:hover {
+        color: var(--cyan);
+      }
+
+      .langSwitch button[aria-pressed="true"] {
+        color: #fff;
+        background: var(--blue);
+        box-shadow: inset 0 0 12px rgba(94, 225, 255, 0.35);
+      }
+
+      .langSwitch button:focus-visible {
+        outline: 2px solid var(--cyan);
+        outline-offset: -2px;
       }
 
       a:focus-visible {
@@ -1064,6 +1271,9 @@
         .valGrid {
           grid-template-columns: 1fr 1fr;
         }
+        .skillBody {
+          grid-template-columns: 1fr;
+        }
         .valGrid .valBox:nth-child(2) {
           grid-column: 1 / -1;
           order: 3;
@@ -1075,7 +1285,7 @@
 
       @media (max-width: 680px) {
         .wrap {
-          padding: 24px 16px 40px;
+          padding: 60px 16px 40px;
         }
         .span-8, .span-7, .span-6, .span-5, .span-4 {
           grid-column: span 12;
@@ -1107,6 +1317,25 @@
         .match:nth-child(n + 5) {
           display: none;
         }
+        .skillRow {
+          grid-template-columns: 30px auto minmax(0, 1fr) auto;
+          gap: 10px;
+          padding: 8px 10px;
+        }
+        .skillIcons {
+          display: none;
+        }
+        .skillInfo .tools {
+          display: block;
+          margin: 0;
+        }
+        .overallBox {
+          text-align: left;
+          flex-direction: row-reverse;
+        }
+        .tiles {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
         .win-in {
           padding: 16px 14px 12px;
         }
@@ -1131,173 +1360,167 @@
     <div class="bg" aria-hidden="true"></div>
     <canvas id="motes" aria-hidden="true"></canvas>
 
+    <div class="langSwitch" role="group" aria-label="Language / Ngôn ngữ">
+      <button type="button" data-lang="vi" aria-pressed="true">VI</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+
     <main class="wrap">
       <div class="grid">
         <!-- HUNTER LICENSE -->
-        <section class="win span-12" style="--i: 0" aria-label="Hunter license">
+        <section class="win span-12" style="--i: 0" data-i18n-aria="licenseTitle">
           <div class="win-in">
-            <div class="win-title big">[ Hunter License ]</div>
+            <div class="win-title big" data-i18n="licenseTitle"></div>
             <div class="license">
               <div class="rankBox">
-                <span class="label">Rank</span>
+                <span class="label" data-i18n="rank"></span>
                 <div class="avatarFrame">
                   <img src="assets/whale.png" alt="WiK1ngST avatar" />
-                  <span class="rank" data-r="SS">SS</span>
+                  <span class="rank" id="avatarRank"></span>
                 </div>
-                <span class="rankTop" id="rankTop">TOP 1%</span>
+                <span class="rankTop" id="avatarLv"></span>
               </div>
 
               <div class="who">
                 <h1><span id="typingName" class="typing">WiK1ngST</span></h1>
                 <p class="handle">@wist · <a href="https://github.com/thanhson0514" style="color: inherit">github/thanhson0514</a></p>
                 <div class="meta">
-                  <div><span class="k">CLASS</span>Web Developer · Fullstack</div>
+                  <div><span class="k" data-i18n="class"></span><span data-i18n="classVal"></span></div>
                   <div>
-                    <span class="k">BASE</span><img class="flag" src="assets/vietnam-flag.png" alt="" />Việt Nam
+                    <span class="k" data-i18n="base"></span><img class="flag" src="assets/vietnam-flag.png" alt="" /><span data-i18n="country"></span>
                   </div>
-                  <div><span class="k">TITLE</span><span class="title">Shadow Coder</span></div>
-                  <div><span class="k">AWAKENED</span><span id="awakened">—</span></div>
+                  <div><span class="k" data-i18n="title"></span><span class="title">Shadow Coder</span></div>
+                  <div><span class="k" data-i18n="awakened"></span><span id="awakened">—</span></div>
                 </div>
               </div>
 
               <div class="stats" id="stats"></div>
             </div>
-            <div class="win-foot">@wist · SYNCED <span class="syncDate"></span></div>
+            <div class="win-foot">@wist · <span data-i18n="synced"></span> <span class="syncDate"></span></div>
           </div>
         </section>
 
         <!-- CHARACTER -->
-        <section class="win span-4" style="--i: 1" aria-label="Character">
+        <section class="win span-4" style="--i: 1" data-i18n-aria="characterTitle">
           <div class="win-in">
-            <div class="win-title">[ Character ]</div>
+            <div class="win-title" data-i18n="characterTitle"></div>
             <div class="rows">
-              <div class="row"><span class="label">Role</span><span>Web Developer</span></div>
-              <div class="row"><span class="label">Focus</span><span>Frontend · Backend · APIs</span></div>
-              <div class="row"><span class="label">Base</span><span>Việt Nam</span></div>
-              <div class="row"><span class="label">Repos</span><span id="repoCount">—</span></div>
-              <div class="row"><span class="label">Followers</span><span id="followerCount">—</span></div>
+              <div class="row"><span class="label" data-i18n="role"></span><span data-i18n="roleVal"></span></div>
+              <div class="row"><span class="label" data-i18n="focus"></span><span>Frontend · Backend · APIs</span></div>
+              <div class="row"><span class="label" data-i18n="baseRow"></span><span data-i18n="country"></span></div>
+              <div class="row"><span class="label" data-i18n="repos"></span><span id="repoCount">—</span></div>
+              <div class="row"><span class="label" data-i18n="followers"></span><span id="followerCount">—</span></div>
             </div>
-            <p class="lore">
-              Builds web apps end to end — React/Next.js on the front, Node/NestJS behind it, Postgres
-              and Redis underneath, shipped with Docker.
-            </p>
-            <div class="win-foot">@wist · SYNCED <span class="syncDate"></span></div>
+            <p class="lore" data-i18n="lore"></p>
+            <div class="win-foot">@wist · <span data-i18n="synced"></span> <span class="syncDate"></span></div>
           </div>
         </section>
 
         <!-- QUEST COMPLETE (socials) -->
-        <section class="win span-4" style="--i: 2" aria-label="Social links">
+        <section class="win span-4" style="--i: 2" data-i18n-aria="questTitle">
           <div class="win-in">
-            <div class="win-title">[ Quest Complete ]</div>
+            <div class="win-title" data-i18n="questTitle"></div>
             <div class="questHead">
-              <span class="label">Join the party</span>
-              <span class="cleared">CLEARED 4 / 4</span>
+              <span class="label" data-i18n="joinParty"></span>
+              <span class="cleared" data-i18n="cleared"></span>
             </div>
             <nav>
               <a class="quest" href="https://github.com/thanhson0514">
                 <span class="chk"><i class="fa-solid fa-check"></i></span>
-                <i class="qi fa-brands fa-github"></i>GitHub<span class="go">ENTER ›</span>
+                <i class="qi fa-brands fa-github"></i>GitHub<span class="go" data-i18n="enter"></span>
               </a>
               <a class="quest" href="https://discordapp.com/users/1082880576178114663">
                 <span class="chk"><i class="fa-solid fa-check"></i></span>
-                <i class="qi fa-brands fa-discord"></i>Discord<span class="go">ENTER ›</span>
+                <i class="qi fa-brands fa-discord"></i>Discord<span class="go" data-i18n="enter"></span>
               </a>
               <a class="quest" href="https://www.facebook.com/lethanhson0514/">
                 <span class="chk"><i class="fa-solid fa-check"></i></span>
-                <i class="qi fa-brands fa-facebook-f"></i>Facebook<span class="go">ENTER ›</span>
+                <i class="qi fa-brands fa-facebook-f"></i>Facebook<span class="go" data-i18n="enter"></span>
               </a>
               <a class="quest" href="https://steamcommunity.com/profiles/76561199273929295">
                 <span class="chk"><i class="fa-solid fa-check"></i></span>
-                <i class="qi fa-brands fa-steam"></i>Steam<span class="go">ENTER ›</span>
+                <i class="qi fa-brands fa-steam"></i>Steam<span class="go" data-i18n="enter"></span>
               </a>
             </nav>
-            <div class="win-foot">@wist · SYNCED <span class="syncDate"></span></div>
-          </div>
-        </section>
-
-        <!-- STAT WEB -->
-        <section class="win span-4" style="--i: 3" aria-label="Stat web">
-          <div class="win-in">
-            <div class="win-title">[ Stat Web ]</div>
-            <div class="radarWrap">
-              <svg id="radar" viewBox="0 0 240 240" role="img" aria-label="Skill radar chart"></svg>
-              <div class="radarSide">
-                <span class="label">Overall</span>
-                <span class="rank" data-r="SS">SS</span>
-                <div class="legend">
-                  SCALE<br />
-                  C · B · A<br />
-                  S · SS · SSS
-                </div>
-              </div>
-            </div>
-            <div class="win-foot">@wist · SYNCED <span class="syncDate"></span></div>
-          </div>
-        </section>
-
-        <!-- ARSENAL -->
-        <section class="win span-7" style="--i: 4" aria-label="Tech stack">
-          <div class="win-in">
-            <div class="win-title">[ Arsenal ]</div>
-            <div class="arsenal" id="arsenal"></div>
-            <div class="win-foot">@wist · SYNCED <span class="syncDate"></span></div>
+            <div class="win-foot">@wist · <span data-i18n="synced"></span> <span class="syncDate"></span></div>
           </div>
         </section>
 
         <!-- ORACLE -->
-        <section class="win span-5" style="--i: 5" aria-label="Quote">
+        <section class="win span-4" style="--i: 3" data-i18n-aria="oracleTitle">
           <div class="win-in oracle">
-            <div class="win-title">[ Oracle Scroll ]</div>
+            <div class="win-title" data-i18n="oracleTitle"></div>
             <span class="mark">❝</span>
             <q id="oracleQuote"></q>
             <cite id="oracleCite"></cite>
-            <div class="win-foot">SCROLL OF THE DAY · <span class="syncDate"></span></div>
+            <div class="win-foot"><span data-i18n="scrollOfDay"></span> · <span class="syncDate"></span></div>
+          </div>
+        </section>
+
+        <!-- SKILL STATUS -->
+        <section class="win span-12" style="--i: 4" data-i18n-aria="skillsTitle">
+          <div class="win-in">
+            <div class="win-title" data-i18n="skillsTitle"></div>
+            <div class="skillHead">
+              <div>
+                <span class="skillLv" id="skillLv"></span>
+                <strong class="skillName">WiK1ngST</strong>
+                <div class="skillSub"><span class="k" data-i18n="title"></span><span class="title">Shadow Coder</span></div>
+                <div class="skillSub" id="topLang"></div>
+              </div>
+              <div class="overallBox">
+                <div>
+                  <span class="label" data-i18n="overallRank"></span>
+                  <b id="overallScore"></b>
+                  <small data-i18n="avgOf"></small>
+                </div>
+                <span class="rank" id="overallRank"></span>
+              </div>
+            </div>
+            <div class="scale" id="scale"></div>
+            <div class="skillBody">
+              <div class="skillRows" id="skillRows"></div>
+              <div class="radarBox">
+                <svg id="radar" viewBox="0 0 240 240" role="img" data-i18n-aria="radarAria"></svg>
+              </div>
+            </div>
+            <div class="win-foot">@wist · <span data-i18n="selfAssessed"></span></div>
           </div>
         </section>
 
         <!-- SỞ THÍCH · GAME (Valorant live via /api/valorant) -->
-        <section class="win span-12" style="--i: 6" aria-label="Sở thích - Game">
+        <section class="win span-12" style="--i: 5" data-i18n-aria="gameTitle">
           <div class="win-in">
-            <div class="win-title">[ Sở thích · Game ]</div>
+            <div class="win-title" data-i18n="gameTitle"></div>
             <div class="valHead">
               <div class="valId">
                 <span class="valLogo">VALORANT</span>
                 <strong id="valRiotId">WiK1ngST#6848</strong>
-                <small id="valSub">COMPETITIVE · PC</small>
+                <small id="valSub"></small>
               </div>
-              <a class="valLink" id="valLink" href="https://tracker.gg/valorant/profile/riot/WiK1ngST%236848/overview?platform=pc&amp;playlist=competitive">TRACKER.GG ›</a>
+              <a class="valLink" href="https://tracker.gg/valorant/profile/riot/WiK1ngST%236848/overview?platform=pc&amp;playlist=competitive">TRACKER.GG ›</a>
             </div>
 
-            <div class="valBody" id="valBody">
-              <div class="empty">Đang đồng bộ dữ liệu Valorant…</div>
-            </div>
+            <div class="valBody" id="valBody"></div>
 
-            <div class="otherGames">
-              <span class="label">Cũng hay chơi</span>
-              <span class="game" style="--gc: #f0a020"><strong>Counter-Strike 2</strong><small>TACTICAL FPS</small></span>
-            </div>
-            <div class="win-foot">VALORANT · SYNCED <span id="valSynced">—</span></div>
+            <div class="win-foot">VALORANT · <span data-i18n="synced"></span> <span id="valSynced">—</span></div>
           </div>
         </section>
 
         <!-- SPOTLIGHTS (GitHub repos) -->
-        <section class="win span-6" style="--i: 7" aria-label="Spotlight repository">
-          <div class="win-in" id="spot0">
-            <div class="empty">Summoning repository…</div>
-          </div>
+        <section class="win span-6" style="--i: 6" data-i18n-aria="spotlight">
+          <div class="win-in" id="spot0"></div>
         </section>
-        <section class="win span-6" style="--i: 8" aria-label="Spotlight repository">
-          <div class="win-in" id="spot1">
-            <div class="empty">Summoning repository…</div>
-          </div>
+        <section class="win span-6" style="--i: 7" data-i18n-aria="spotlight">
+          <div class="win-in" id="spot1"></div>
         </section>
 
-        <!-- QUEST LOG (GitHub events) -->
-        <section class="win span-12" style="--i: 9" aria-label="Recent GitHub activity">
+        <!-- SYSTEM LOG (GitHub events) -->
+        <section class="win span-12" style="--i: 8" data-i18n-aria="logTitle">
           <div class="win-in">
-            <div class="win-title">[ System Log ]</div>
-            <div class="log" id="log"><div class="empty">Reading the system log…</div></div>
-            <div class="win-foot">github.com/thanhson0514 · SYNCED <span class="syncDate"></span></div>
+            <div class="win-title" data-i18n="logTitle"></div>
+            <div class="log" id="log"></div>
+            <div class="win-foot">github.com/thanhson0514 · <span data-i18n="synced"></span> <span class="syncDate"></span></div>
           </div>
         </section>
       </div>
@@ -1308,45 +1531,217 @@
     <script>
       const GH_USER = "thanhson0514";
 
-      // Self-assessed stats — edit freely. Ranks: C, B, A, S, SS, SSS, EX.
-      const STATS = [
-        { key: "FRONTEND", rank: "SS", note: "React · Next.js" },
-        { key: "BACKEND", rank: "S", note: "Node · NestJS" },
-        { key: "API", rank: "S", note: "GraphQL · REST" },
-        { key: "DATA", rank: "A", note: "Postgres · Redis" },
-        { key: "DEVOPS", rank: "B", note: "Docker · K8s" },
-        { key: "AIM", rank: "SSS", note: "Valorant · CS2" },
-      ];
-      const RANK_VALUE = { C: 1, B: 2, A: 3, S: 4, SS: 5, SSS: 6, EX: 7 };
-      const RANK_COLOR = {
-        EX: "#f5f7ff", SSS: "#ff3d5a", SS: "#ff8a3d", S: "#ffc845",
-        A: "#c56bff", B: "#7b83ff", C: "#4fd1c5",
+      // ---------- i18n ----------
+      const I18N = {
+        vi: {
+          pageTitle: "WiK1ngST · Thẻ Thợ Săn",
+          licenseTitle: "[ Thẻ Thợ Săn ]",
+          rank: "Hạng",
+          class: "LỚP",
+          classVal: "Lập trình viên Web · Fullstack",
+          base: "NƠI Ở",
+          country: "Việt Nam",
+          title: "DANH HIỆU",
+          awakened: "THỨC TỈNH",
+          synced: "ĐỒNG BỘ",
+          rankWord: "HẠNG",
+          characterTitle: "[ Nhân vật ]",
+          role: "Vai trò",
+          roleVal: "Lập trình viên Web",
+          focus: "Chuyên môn",
+          baseRow: "Nơi ở",
+          repos: "Repo",
+          followers: "Người theo dõi",
+          lore: "Xây dựng web app từ đầu đến cuối: React/Next.js ở frontend, Node/NestJS ở backend, Postgres và Redis lưu dữ liệu, đóng gói và triển khai bằng Docker.",
+          questTitle: "[ Nhiệm vụ hoàn thành ]",
+          joinParty: "Vào party",
+          cleared: "HOÀN THÀNH 4 / 4",
+          enter: "VÀO ›",
+          skillsTitle: "[ Bảng kỹ năng ]",
+          radarAria: "Biểu đồ radar kỹ năng",
+          overallRank: "XẾP HẠNG TỔNG",
+          avgOf: "ĐIỂM TB 6 KỸ NĂNG",
+          you: (n) => `▲ BẠN · ${n}`,
+          nextAt: (r, n) => `${r} TỪ ${n} ĐIỂM`,
+          maxRank: "HẠNG TỐI ĐA",
+          topLang: (l, p) => `Ngôn ngữ chính trên GitHub: ${l} ${p}%`,
+          selfAssessed: "TỰ ĐÁNH GIÁ · THANG 0–100",
+          skillGroups: {
+            backend: "Backend", frontend: "Frontend", language: "Ngôn ngữ",
+            database: "Dữ liệu", api: "API", devops: "DevOps",
+          },
+          oracleTitle: "[ Lời tiên tri ]",
+          scrollOfDay: "LỜI TIÊN TRI HÔM NAY",
+          quotes: [
+            ["Máy tôi chạy được mà. Vậy ship luôn cái máy.", "— Ngạn ngữ dân dev"],
+            ["Mỗi bug bạn sửa giúp bạn lên cấp. Mỗi bug bạn ship giúp người khác lên cấp.", "— Hệ thống"],
+            ["Giải quyết vấn đề trước, viết code sau.", "— Lời dạy của Guild"],
+            ["Thợ săn ngừng cày sẽ mãi là hạng E.", "— Hệ thống"],
+            ["Code sạch là bộ giáp tốt nhất khi đánh boss.", "— Hệ thống"],
+          ],
+          gameTitle: "[ Sở thích · Game ]",
+          competitive: "XẾP HẠNG",
+          valLoading: "Đang đồng bộ dữ liệu Valorant…",
+          valError: "Chưa lấy được dữ liệu Valorant lúc này. Xem trực tiếp trên tracker.gg ở góc phải.",
+          currentRank: "Rank hiện tại",
+          lastGame: (n) => `(${n} trận gần nhất)`,
+          peak: "Peak",
+          thisAct: (n) => `Mùa này · ${n} trận`,
+          winTile: (w, l) => `THẮNG · ${w}T ${l}B`,
+          headshot: "HEADSHOT",
+          mainAgents: "Agent chủ lực",
+          noMatches: "Chưa có trận nào mùa này.",
+          nMatches: (n) => ` · ${n} trận`,
+          result: { W: "THẮNG", L: "THUA", D: "HÒA" },
+          spotlight: "[ Tiêu điểm ]",
+          spotTag: "[ TIÊU ĐIỂM ]",
+          spotLoading: "Đang triệu hồi repository…",
+          noQuest: "Chưa có nhiệm vụ nào.",
+          noDesc: "Chưa có mô tả.",
+          forks: (n) => `${n} FORK`,
+          pushed: "CẬP NHẬT",
+          logTitle: "[ Nhật ký hệ thống ]",
+          logLoading: "Đang đọc nhật ký hệ thống…",
+          logEmpty: "Không có hoạt động gần đây. Thợ săn đang nghỉ ngơi.",
+          logError: "Không đọc được nhật ký (GitHub giới hạn lượt truy cập). Thử lại sau nhé.",
+          ago: { m: "phút trước", h: "giờ trước", d: "ngày trước" },
+          agoShort: { m: "phút", h: "giờ", d: "ngày" },
+          ev: {
+            push: (n, r) => (n ? `Đẩy ${n} commit lên ${r}` : `Đẩy code lên ${r}`),
+            create: (t, ref, r) => `Tạo ${t}${ref ? " " + ref : ""} trong ${r}`,
+            star: (r) => `Gắn sao ${r}`,
+            fork: (r) => `Fork ${r}`,
+            pr: (a, n, r) => `PR #${n} (${a}) trong ${r}`,
+            issue: (a, r) => `Issue (${a}) trong ${r}`,
+            comment: (r) => `Bình luận trong ${r}`,
+            del: (t, r) => `Xóa ${t} trong ${r}`,
+          },
+          locale: "vi-VN",
+        },
+        en: {
+          pageTitle: "WiK1ngST · Hunter License",
+          licenseTitle: "[ Hunter License ]",
+          rank: "Rank",
+          class: "CLASS",
+          classVal: "Web Developer · Fullstack",
+          base: "BASE",
+          country: "Vietnam",
+          title: "TITLE",
+          awakened: "AWAKENED",
+          synced: "SYNCED",
+          rankWord: "RANK",
+          characterTitle: "[ Character ]",
+          role: "Role",
+          roleVal: "Web Developer",
+          focus: "Focus",
+          baseRow: "Base",
+          repos: "Repos",
+          followers: "Followers",
+          lore: "Builds web apps end to end — React/Next.js on the front, Node/NestJS behind it, Postgres and Redis underneath, shipped with Docker.",
+          questTitle: "[ Quest Complete ]",
+          joinParty: "Join the party",
+          cleared: "CLEARED 4 / 4",
+          enter: "ENTER ›",
+          skillsTitle: "[ Skill Status ]",
+          radarAria: "Skill radar chart",
+          overallRank: "OVERALL RANK",
+          avgOf: "AVG OF 6 SKILLS",
+          you: (n) => `▲ YOU · ${n}`,
+          nextAt: (r, n) => `${r} AT ${n}`,
+          maxRank: "MAX RANK",
+          topLang: (l, p) => `Top GitHub language: ${l} ${p}%`,
+          selfAssessed: "SELF-ASSESSED · 0–100 SCALE",
+          skillGroups: {
+            backend: "Backend", frontend: "Frontend", language: "Languages",
+            database: "Database", api: "API", devops: "DevOps",
+          },
+          oracleTitle: "[ Oracle Scroll ]",
+          scrollOfDay: "SCROLL OF THE DAY",
+          quotes: [
+            ["It works on my machine. Ship the machine.", "— Ancient dev proverb"],
+            ["Every bug you fix levels you up. Every bug you ship levels someone else up.", "— System"],
+            ["First, solve the problem. Then, write the code.", "— Guild wisdom"],
+            ["A hunter who stops grinding stays an E-rank forever.", "— System"],
+            ["Clean code is the best armor in a boss fight.", "— System"],
+          ],
+          gameTitle: "[ Hobbies · Games ]",
+          competitive: "COMPETITIVE",
+          valLoading: "Syncing Valorant data…",
+          valError: "Couldn't load Valorant data right now. See it live on tracker.gg (top right).",
+          currentRank: "Current rank",
+          lastGame: (n) => `(${n} last game)`,
+          peak: "Peak",
+          thisAct: (n) => `This act · ${n} matches`,
+          winTile: (w, l) => `WIN RATE · ${w}W ${l}L`,
+          headshot: "HEADSHOT",
+          mainAgents: "Main agents",
+          noMatches: "No matches this act yet.",
+          nMatches: (n) => ` · ${n} ${n === 1 ? "match" : "matches"}`,
+          result: { W: "WIN", L: "LOSS", D: "DRAW" },
+          spotlight: "[ Spotlight ]",
+          spotTag: "[ SPOTLIGHT ]",
+          spotLoading: "Summoning repository…",
+          noQuest: "No quest available.",
+          noDesc: "No description yet.",
+          forks: (n) => `${n} FORKS`,
+          pushed: "PUSHED",
+          logTitle: "[ System Log ]",
+          logLoading: "Reading the system log…",
+          logEmpty: "No recent activity. The hunter is resting.",
+          logError: "System log unavailable (GitHub rate limit). Try again later.",
+          ago: { m: "m ago", h: "h ago", d: "d ago" },
+          agoShort: { m: "m", h: "h", d: "d" },
+          ev: {
+            push: (n, r) => (n ? `Pushed ${n} commit${n > 1 ? "s" : ""} to ${r}` : `Pushed to ${r}`),
+            create: (t, ref, r) => `Created ${t}${ref ? " " + ref : ""} in ${r}`,
+            star: (r) => `Starred ${r}`,
+            fork: (r) => `Forked ${r}`,
+            pr: (a, n, r) => `${a} PR #${n} in ${r}`,
+            issue: (a, r) => `${a} issue in ${r}`,
+            comment: (r) => `Commented on ${r}`,
+            del: (t, r) => `Deleted ${t} in ${r}`,
+          },
+          locale: "en-US",
+        },
       };
 
-      const ARSENAL = [
-        { group: "Frontend", items: [
-          ["fa-brands fa-react", "ReactJS"], ["fa-solid fa-n", "Next.js"],
-          ["fa-solid fa-code", "TypeScript"], ["fa-solid fa-wind", "Tailwind"], ["fa-solid fa-bolt", "Vite"],
-        ] },
-        { group: "Backend", items: [
-          ["fa-brands fa-node-js", "Node.js"], ["fa-solid fa-feather", "NestJS"],
-          ["fa-solid fa-route", "Express"], ["fa-solid fa-diagram-project", "GraphQL"], ["fa-solid fa-plug", "REST"],
-        ] },
-        { group: "Data", items: [
-          ["fa-solid fa-database", "PostgreSQL"], ["fa-solid fa-layer-group", "Redis"],
-        ] },
-        { group: "DevOps", items: [
-          ["fa-brands fa-docker", "Docker"], ["fa-solid fa-dharmachakra", "Kubernetes"],
-        ] },
+      const LANGS = ["vi", "en"];
+      let lang = "vi";
+      try {
+        const q = new URLSearchParams(location.search).get("lang");
+        const saved = localStorage.getItem("lang");
+        if (LANGS.includes(q)) lang = q;
+        else if (LANGS.includes(saved)) lang = saved;
+      } catch (e) {}
+      const t = (k) => I18N[lang][k];
+
+      // Self-assessed skills (0–100) — edit freely; ranks, bars, radar and the
+      // license card are all derived from these scores.
+      const SKILLS = [
+        { key: "STR", group: "backend", score: 76, tools: "Node.js · NestJS · Express",
+          icons: ["fa-brands fa-node-js", "fa-solid fa-feather", "fa-solid fa-route"] },
+        { key: "AGI", group: "frontend", score: 85, tools: "React · Next.js · Tailwind · Vite",
+          icons: ["fa-brands fa-react", "fa-solid fa-n", "fa-solid fa-wind", "fa-solid fa-bolt"] },
+        { key: "INT", group: "language", score: 78, tools: "TypeScript · JavaScript",
+          icons: ["fa-solid fa-code", "fa-brands fa-js"] },
+        { key: "VIT", group: "database", score: 66, tools: "PostgreSQL · Redis",
+          icons: ["fa-solid fa-database", "fa-solid fa-layer-group"] },
+        { key: "LUK", group: "api", score: 74, tools: "GraphQL · REST",
+          icons: ["fa-solid fa-diagram-project", "fa-solid fa-plug"] },
+        { key: "CHA", group: "devops", score: 55, tools: "Docker · Kubernetes",
+          icons: ["fa-brands fa-docker", "fa-solid fa-dharmachakra"] },
       ];
 
-      const QUOTES = [
-        ["It works on my machine. Ship the machine.", "— Ancient dev proverb"],
-        ["Every bug you fix levels you up. Every bug you ship levels someone else up.", "— System"],
-        ["First, solve the problem. Then, write the code.", "— Guild wisdom"],
-        ["A hunter who stops grinding stays an E-rank forever.", "— System"],
-        ["Clean code is the best armor in a boss fight.", "— System"],
+      // [rank, min score, color, width weight on the scale bar]
+      const RANKS = [
+        ["E", 0, "#6b7591", 1], ["D", 20, "#3ecf8e", 1], ["C", 35, "#4fd1c5", 1],
+        ["B", 50, "#7b83ff", 1], ["A", 62, "#c56bff", 1.2], ["S", 72, "#ffc845", 1.4],
+        ["SS", 82, "#ff8a3d", 1.6], ["SSS", 90, "#ff3d5a", 2], ["EX", 97, "#f5f7ff", 2],
       ];
+      const rankIndex = (score) => RANKS.reduce((idx, r, i) => (score >= r[1] ? i : idx), 0);
+      const rankOf = (score) => RANKS[rankIndex(score)][0];
+      const RANK_COLOR = Object.fromEntries(RANKS.map((r) => [r[0], r[2]]));
+      const AVG = Math.round(SKILLS.reduce((sum, k) => sum + k.score, 0) / SKILLS.length);
 
       const LANG_COLOR = {
         JavaScript: "#f1e05a", TypeScript: "#3178c6", HTML: "#e34c26", CSS: "#563d7c",
@@ -1366,90 +1761,64 @@
 
       document.querySelectorAll(".syncDate").forEach((n) => (n.textContent = fmtDate(Date.now())));
 
-      // ---------- Stats ----------
-      const statsEl = $("stats");
-      STATS.forEach((s) => {
-        const row = el("div", "stat");
-        const r = el("span", "rank", s.rank);
-        r.dataset.r = s.rank;
-        const txt = el("div");
-        txt.append(el("b", null, s.key), el("span", null, s.note), el("small", null, "RANK " + s.rank));
-        row.append(r, txt);
-        statsEl.append(row);
-      });
+      // Fetched data, kept so a language switch re-renders without refetching.
+      // undefined = loading, null = failed.
+      const data = { repos: undefined, allRepos: undefined, events: undefined, val: undefined };
 
-      // ---------- Radar ----------
+      // ---------- Radar (language-independent) ----------
       (function radar() {
         const svg = $("radar");
         const NS = "http://www.w3.org/2000/svg";
-        const cx = 120, cy = 120, R = 82, n = STATS.length, max = 7;
+        const cx = 120, cy = 120, R = 80, n = SKILLS.length;
         const pt = (i, v) => {
           const a = -Math.PI / 2 + (i * 2 * Math.PI) / n;
           return [cx + Math.cos(a) * R * v, cy + Math.sin(a) * R * v];
         };
-        const mk = (tag, attrs) => {
+        const mk = (tag, attrs, parent = svg) => {
           const node = document.createElementNS(NS, tag);
           for (const k in attrs) node.setAttribute(k, attrs[k]);
-          svg.append(node);
+          parent.append(node);
           return node;
         };
-        for (let ring = 1; ring <= 4; ring++) {
-          const pts = STATS.map((_, i) => pt(i, ring / 4).join(",")).join(" ");
-          mk("polygon", { points: pts, fill: "none", stroke: "rgba(77,141,255,0.22)", "stroke-width": 1 });
-        }
-        STATS.forEach((s, i) => {
+        const ring = (v) => SKILLS.map((_, i) => pt(i, v).join(",")).join(" ");
+        [0.25, 0.5, 0.75, 1].forEach((v) =>
+          mk("polygon", { points: ring(v), fill: "none", stroke: "rgba(77,141,255,0.22)", "stroke-width": 1 })
+        );
+        // Dashed ring marks the SSS threshold, like the reference card.
+        const sss = RANKS.find((r) => r[0] === "SSS")[1] / 100;
+        mk("polygon", { points: ring(sss), fill: "none", stroke: "rgba(255,61,90,0.55)", "stroke-dasharray": "3 3" });
+        SKILLS.forEach((k, i) => {
           const [x, y] = pt(i, 1);
           mk("line", { x1: cx, y1: cy, x2: x, y2: y, stroke: "rgba(77,141,255,0.18)" });
-          const [lx, ly] = pt(i, 1.24);
-          const t1 = mk("text", {
+          const [lx, ly] = pt(i, 1.22);
+          const rk = rankOf(k.score);
+          mk("text", {
             x: lx, y: ly - 3, "text-anchor": "middle", "font-family": "JetBrains Mono, monospace",
             "font-size": 9, fill: "#8a9bc4", "letter-spacing": "0.08em",
-          });
-          t1.textContent = s.key;
-          const t2 = mk("text", {
-            x: lx, y: ly + 9, "text-anchor": "middle", "font-family": "Rajdhani, sans-serif",
-            "font-size": 12, "font-weight": 700, fill: RANK_COLOR[s.rank],
-          });
-          t2.textContent = s.rank;
+          }).textContent = k.key;
+          mk("text", {
+            x: lx, y: ly + 10, "text-anchor": "middle", "font-family": "Rajdhani, sans-serif",
+            "font-size": 13, "font-weight": 700, fill: RANK_COLOR[rk],
+          }).textContent = rk;
         });
-        const data = STATS.map((s, i) => pt(i, RANK_VALUE[s.rank] / max));
+        const pts = SKILLS.map((k, i) => pt(i, k.score / 100));
         const g = mk("g", { class: "poly" });
-        const poly = document.createElementNS(NS, "polygon");
-        poly.setAttribute("points", data.map((p) => p.join(",")).join(" "));
-        poly.setAttribute("fill", "rgba(77,141,255,0.28)");
-        poly.setAttribute("stroke", "#5ee1ff");
-        poly.setAttribute("stroke-width", 1.5);
-        poly.setAttribute("style", "filter: drop-shadow(0 0 6px rgba(94,225,255,0.7))");
-        g.append(poly);
-        data.forEach(([x, y], i) => {
-          const c = document.createElementNS(NS, "circle");
-          c.setAttribute("cx", x);
-          c.setAttribute("cy", y);
-          c.setAttribute("r", 3.5);
-          c.setAttribute("fill", RANK_COLOR[STATS[i].rank]);
-          g.append(c);
-        });
+        mk("polygon", {
+          points: pts.map((p) => p.join(",")).join(" "),
+          fill: "rgba(77,141,255,0.3)", stroke: "#5ee1ff", "stroke-width": 1.5,
+          style: "filter: drop-shadow(0 0 6px rgba(94,225,255,0.7))",
+        }, g);
+        pts.forEach(([x, y], i) =>
+          mk("circle", { cx: x, cy: y, r: 3.5, fill: RANK_COLOR[rankOf(SKILLS[i].score)] }, g)
+        );
       })();
 
-      // ---------- Arsenal ----------
-      ARSENAL.forEach(({ group, items }) => {
-        const row = el("div", "slotRow");
-        row.append(el("span", "label", group));
-        const slots = el("div", "slots");
-        items.forEach(([icon, name]) => {
-          const s = el("span", "slot");
-          s.append(el("i", icon), document.createTextNode(name));
-          slots.append(s);
-        });
-        row.append(slots);
-        $("arsenal").append(row);
-      });
-
-      // ---------- Oracle (one quote per day) ----------
-      const day = Math.floor(Date.now() / 86400000);
-      const [qt, qc] = QUOTES[day % QUOTES.length];
-      $("oracleQuote").textContent = qt;
-      $("oracleCite").textContent = qc;
+      // Overall rank on the avatar and skill header.
+      for (const id of ["avatarRank", "overallRank"]) {
+        $(id).textContent = $(id).dataset.r = rankOf(AVG);
+      }
+      $("avatarLv").textContent = $("skillLv").textContent = `LV. ${AVG}`;
+      $("overallScore").textContent = `${AVG} / 100`;
 
       // ---------- Typing name ----------
       (function typing() {
@@ -1481,123 +1850,205 @@
         setTimeout(tick, 2600);
       })();
 
-      // ---------- GitHub data ----------
-      const gh = (path) =>
-        fetch("https://api.github.com/" + path, { headers: { Accept: "application/vnd.github+json" } })
-          .then((r) => (r.ok ? r.json() : Promise.reject(r.status)));
+      // ---------- Renderers ----------
+      function renderStats() {
+        const box = $("stats");
+        box.textContent = "";
+        SKILLS.forEach((k) => {
+          const rk = rankOf(k.score);
+          const row = el("div", "stat");
+          const r = el("span", "rank", rk);
+          r.dataset.r = rk;
+          const txt = el("div");
+          txt.append(
+            el("b", null, t("skillGroups")[k.group].toUpperCase()),
+            el("span", null, k.tools.split(" · ")[0]),
+            el("small", null, `${k.key} · ${t("rankWord")} ${rk}`)
+          );
+          row.append(r, txt);
+          box.append(row);
+        });
+      }
 
-      gh("users/" + GH_USER)
-        .then((u) => {
-          $("awakened").textContent = fmtDate(u.created_at);
-          $("repoCount").textContent = u.public_repos;
-          $("followerCount").textContent = u.followers;
-        })
-        .catch(() => {});
+      function renderSkills() {
+        // Scale bar E → EX with a marker at the average score.
+        const scale = $("scale");
+        scale.textContent = "";
+        const cols = RANKS.map((r) => r[3] + "fr").join(" ");
+        const total = RANKS.reduce((sum, r) => sum + r[3], 0);
+        const row = (cls, fn) => {
+          const d = el("div", "scaleRow " + cls);
+          d.style.gridTemplateColumns = cols;
+          RANKS.forEach((r, i) => {
+            const sp = el("span", null, fn(r, i));
+            sp.style.setProperty("--sc", r[2]);
+            d.append(sp);
+          });
+          return d;
+        };
+        const i = rankIndex(AVG);
+        const lo = RANKS[i][1], hi = RANKS[i + 1]?.[1] ?? 100;
+        const before = RANKS.slice(0, i).reduce((sum, r) => sum + r[3], 0);
+        const pos = ((before + RANKS[i][3] * Math.min(1, (AVG - lo) / (hi - lo))) / total) * 100;
+        const track = el("div", "scaleTrack");
+        const marker = el("i", "scaleMarker");
+        marker.style.left = pos + "%";
+        track.append(row("scaleBar", () => ""), marker);
+        const you = el("div", "scaleYou");
+        const ys = el("span", null, t("you")(AVG));
+        ys.style.left = `clamp(40px, ${pos}%, calc(100% - 40px))`;
+        you.append(ys);
+        scale.append(row("scaleLetters", (r) => r[0]), track, row("scaleNums", (r) => r[1]), you);
+
+        // Skill rows
+        const rows = $("skillRows");
+        rows.textContent = "";
+        SKILLS.forEach((k) => {
+          const ri = rankIndex(k.score);
+          const [rk, min, color] = RANKS[ri];
+          const next = RANKS[ri + 1];
+          const r = el("div", "skillRow");
+          r.style.setProperty("--rc", color);
+          const badge = el("span", "rank", rk);
+          badge.dataset.r = rk;
+          const info = el("div", "skillInfo");
+          const line = el("div", "line");
+          line.append(el("strong", null, t("skillGroups")[k.group]), el("span", "tools", k.tools));
+          const bar = el("div", "skillBar");
+          const fill = el("i");
+          fill.style.width = (next ? ((k.score - min) / (next[1] - min)) * 100 : 100) + "%";
+          bar.append(fill);
+          info.append(line, el("small", null, next ? t("nextAt")(next[0], next[1]) : t("maxRank")), bar);
+          const icons = el("div", "skillIcons");
+          k.icons.forEach((c) => icons.append(el("i", c)));
+          r.append(el("span", "skillKey", k.key), badge, info, el("span", "skillVal", String(k.score)), icons);
+          rows.append(r);
+        });
+
+        renderTopLang();
+      }
+
+      // Most common primary language across the user's own repos (real GitHub data).
+      function renderTopLang() {
+        const box = $("topLang");
+        const repos = (data.allRepos || []).filter((r) => r.language);
+        if (!repos.length) {
+          box.textContent = "";
+          return;
+        }
+        const counts = {};
+        repos.forEach((r) => (counts[r.language] = (counts[r.language] || 0) + 1));
+        const [top, n] = Object.entries(counts).sort((a, b) => b[1] - a[1])[0];
+        box.textContent = t("topLang")(top, Math.round((n / repos.length) * 1000) / 10);
+      }
+
+      function renderOracle() {
+        const quotes = t("quotes");
+        const [qt, qc] = quotes[Math.floor(Date.now() / 86400000) % quotes.length];
+        $("oracleQuote").textContent = qt;
+        $("oracleCite").textContent = qc;
+      }
+
+      const ago = (d, short) => {
+        const s = (Date.now() - new Date(d)) / 1000;
+        const a = t(short ? "agoShort" : "ago");
+        const sep = lang === "vi" ? " " : "";
+        if (s < 3600) return Math.max(1, Math.round(s / 60)) + sep + a.m;
+        if (s < 86400) return Math.round(s / 3600) + sep + a.h;
+        return Math.round(s / 86400) + sep + a.d;
+      };
 
       function renderSpot(target, repo) {
         target.textContent = "";
+        if (repo === undefined) {
+          target.append(el("div", "empty", t("spotLoading")));
+          return;
+        }
         if (!repo) {
-          target.append(el("div", "win-title", "[ Spotlight ]"), el("div", "empty", "No quest available."));
+          target.append(el("div", "win-title", t("spotlight")), el("div", "empty", t("noQuest")));
           return;
         }
         const a = el("a", "spot");
         a.href = repo.html_url;
         const top = el("div", "spotTop");
-        top.append(el("span", "spotTag", "[ SPOTLIGHT ]"), el("span", "star", "★ " + repo.stargazers_count));
+        top.append(el("span", "spotTag", t("spotTag")), el("span", "star", "★ " + repo.stargazers_count));
         const meta = el("div", "spotMeta");
-        const lang = el("span", repo.language ? "lang" : null, repo.language || "—");
-        if (repo.language && LANG_COLOR[repo.language]) lang.style.setProperty("--lc", LANG_COLOR[repo.language]);
-        meta.append(lang, el("span", null, repo.forks_count + " FORKS"), el("span", null, "PUSHED " + fmtDate(repo.pushed_at)));
-        a.append(top, el("h3", null, repo.name), el("p", null, repo.description || "No description yet."), meta);
+        const lng = el("span", repo.language ? "lang" : null, repo.language || "—");
+        if (repo.language && LANG_COLOR[repo.language]) lng.style.setProperty("--lc", LANG_COLOR[repo.language]);
+        meta.append(lng, el("span", null, t("forks")(repo.forks_count)), el("span", null, `${t("pushed")} ${fmtDate(repo.pushed_at)}`));
+        a.append(top, el("h3", null, repo.name), el("p", null, repo.description || t("noDesc")), meta);
         target.append(a);
       }
 
-      gh("users/" + GH_USER + "/repos?per_page=100&sort=pushed")
-        .then((repos) => {
-          const picks = repos
-            .filter((r) => !r.fork)
-            .sort((a, b) => b.stargazers_count - a.stargazers_count || new Date(b.pushed_at) - new Date(a.pushed_at))
-            .slice(0, 2);
-          renderSpot($("spot0"), picks[0]);
-          renderSpot($("spot1"), picks[1]);
-        })
-        .catch(() => {
-          renderSpot($("spot0"), null);
-          renderSpot($("spot1"), null);
-        });
-
-      const ago = (d) => {
-        const s = (Date.now() - new Date(d)) / 1000;
-        if (s < 3600) return Math.max(1, Math.round(s / 60)) + "m ago";
-        if (s < 86400) return Math.round(s / 3600) + "h ago";
-        return Math.round(s / 86400) + "d ago";
-      };
+      function renderSpots() {
+        const r = data.repos;
+        [0, 1].forEach((i) => renderSpot($("spot" + i), r === undefined ? undefined : r?.[i] ?? null));
+      }
 
       function describe(ev) {
-        const repo = ev.repo.name;
+        const r = ev.repo.name;
         const p = ev.payload || {};
+        const e = t("ev");
         switch (ev.type) {
-          case "PushEvent": {
-            const n = p.size ?? p.commits?.length;
-            return ["fa-solid fa-arrow-up", n ? `Pushed ${n} commit${n > 1 ? "s" : ""} to ${repo}` : `Pushed to ${repo}`];
-          }
+          case "PushEvent":
+            return ["fa-solid fa-arrow-up", e.push(p.size ?? p.commits?.length, r)];
           case "CreateEvent":
-            return ["fa-solid fa-plus", `Created ${p.ref_type}${p.ref ? " " + p.ref : ""} in ${repo}`];
+            return ["fa-solid fa-plus", e.create(p.ref_type, p.ref, r)];
           case "WatchEvent":
-            return ["fa-solid fa-star", `Starred ${repo}`];
+            return ["fa-solid fa-star", e.star(r)];
           case "ForkEvent":
-            return ["fa-solid fa-code-fork", `Forked ${repo}`];
+            return ["fa-solid fa-code-fork", e.fork(r)];
           case "PullRequestEvent":
-            return ["fa-solid fa-code-pull-request", `${p.action} PR #${p.number} in ${repo}`];
+            return ["fa-solid fa-code-pull-request", e.pr(p.action, p.number, r)];
           case "IssuesEvent":
-            return ["fa-solid fa-circle-dot", `${p.action} issue in ${repo}`];
+            return ["fa-solid fa-circle-dot", e.issue(p.action, r)];
           case "IssueCommentEvent":
-            return ["fa-solid fa-comment", `Commented on ${repo}`];
+            return ["fa-solid fa-comment", e.comment(r)];
           case "DeleteEvent":
-            return ["fa-solid fa-trash", `Deleted ${p.ref_type} in ${repo}`];
+            return ["fa-solid fa-trash", e.del(p.ref_type, r)];
           default:
-            return ["fa-solid fa-bolt", `${ev.type.replace("Event", "")} · ${repo}`];
+            return ["fa-solid fa-bolt", `${ev.type.replace("Event", "")} · ${r}`];
         }
       }
 
-      gh("users/" + GH_USER + "/events/public?per_page=8")
-        .then((events) => {
-          const log = $("log");
-          log.textContent = "";
-          if (!events.length) {
-            log.append(el("div", "empty", "No recent activity. The hunter is resting."));
-            return;
-          }
-          events.slice(0, 6).forEach((ev) => {
-            const [icon, text] = describe(ev);
-            const row = el("div", "logItem");
-            const t = el("time", null, ago(ev.created_at));
-            t.dateTime = ev.created_at;
-            row.append(el("i", icon), el("span", null, text), t);
-            log.append(row);
-          });
-        })
-        .catch(() => {
-          $("log").textContent = "";
-          $("log").append(el("div", "empty", "System log unavailable (GitHub rate limit). Try again later."));
+      function renderLog() {
+        const log = $("log");
+        log.textContent = "";
+        if (data.events === undefined) return log.append(el("div", "empty", t("logLoading")));
+        if (data.events === null) return log.append(el("div", "empty", t("logError")));
+        if (!data.events.length) return log.append(el("div", "empty", t("logEmpty")));
+        data.events.slice(0, 6).forEach((ev) => {
+          const [icon, text] = describe(ev);
+          const row = el("div", "logItem");
+          const time = el("time", null, ago(ev.created_at));
+          time.dateTime = ev.created_at;
+          row.append(el("i", icon), el("span", null, text), time);
+          log.append(row);
         });
+      }
 
       // ---------- Sở thích · Game: Valorant (served by api/valorant.js on Vercel) ----------
-      function renderValorant(v) {
+      function renderValorant() {
         const body = $("valBody");
         body.textContent = "";
+        const v = data.val;
+        if (!v) {
+          $("valSub").textContent = `${t("competitive")} · PC`;
+          body.append(el("div", "empty", v === undefined ? t("valLoading") : t("valError")));
+          return;
+        }
         const { account, rank, stats } = v;
 
         $("valRiotId").textContent = `${account.name}#${account.tag}`;
-        $("valSub").textContent = `COMPETITIVE · ${String(account.region).toUpperCase()} · LV ${account.level ?? "—"}` +
+        $("valSub").textContent = `${t("competitive")} · ${String(account.region).toUpperCase()} · LV ${account.level ?? "—"}` +
           (stats.season ? ` · ${stats.season.toUpperCase()}` : "");
-        $("valSynced").textContent = new Date(v.updatedAt).toLocaleString("vi-VN");
+        $("valSynced").textContent = new Date(v.updatedAt).toLocaleString(t("locale"));
 
         const grid = el("div", "valGrid");
 
         // Rank box
         const rb = el("div", "valBox");
-        rb.append(el("span", "label", "Rank hiện tại"));
+        rb.append(el("span", "label", t("currentRank")));
         const rk = el("div", "valRank");
         if (rank.icon) {
           const img = el("img");
@@ -1614,14 +2065,14 @@
         const meta = el("div", "rrMeta", `${rank.rr} RR `);
         if (rank.lastChange != null) {
           meta.append(el("span", rank.lastChange >= 0 ? "up" : "down",
-            `(${rank.lastChange >= 0 ? "+" : ""}${rank.lastChange} trận gần nhất)`));
+            t("lastGame")(`${rank.lastChange >= 0 ? "+" : ""}${rank.lastChange}`)));
         }
         rInfo.append(el("strong", null, rank.name), bar, meta);
         rk.append(rInfo);
         rb.append(rk);
         if (rank.peakName) {
           const pk = el("div", "peak");
-          pk.append(el("span", "label", "Peak"));
+          pk.append(el("span", "label", t("peak")));
           if (rank.peakIcon) {
             const pi = el("img");
             pi.src = rank.peakIcon;
@@ -1634,33 +2085,33 @@
 
         // Stat tiles
         const sb = el("div", "valBox");
-        sb.append(el("span", "label", `Mùa này · ${stats.matches} trận`));
+        sb.append(el("span", "label", t("thisAct")(stats.matches)));
         const tiles = el("div", "tiles");
         [
-          [stats.winRate + "%", `WIN · ${stats.wins}W ${stats.losses}L`],
+          [stats.winRate + "%", t("winTile")(stats.wins, stats.losses)],
           [stats.kd, "K/D"],
-          [stats.hsPct + "%", "HEADSHOT"],
+          [stats.hsPct + "%", t("headshot")],
           [stats.acs, "ACS"],
           [stats.adr, "ADR"],
           [`${stats.kills}/${stats.deaths}/${stats.assists}`, "K / D / A"],
         ].forEach(([val, lbl]) => {
-          const t = el("div", "tile");
-          t.append(el("b", null, String(val)), el("small", null, lbl));
-          tiles.append(t);
+          const tile = el("div", "tile");
+          tile.append(el("b", null, String(val)), el("small", null, lbl));
+          tiles.append(tile);
         });
         sb.append(tiles);
 
         // Top agents
         const ab = el("div", "valBox");
-        ab.append(el("span", "label", "Agent chủ lực"));
-        if (!stats.topAgents.length) ab.append(el("div", "empty", "Chưa có trận nào mùa này."));
+        ab.append(el("span", "label", t("mainAgents")));
+        if (!stats.topAgents.length) ab.append(el("div", "empty", t("noMatches")));
         stats.topAgents.forEach((a) => {
           const r = el("div", "agentRow");
           const img = el("img");
           img.src = a.icon || "";
           img.alt = "";
           const mid = el("div");
-          mid.append(el("strong", null, a.name), el("small", null, ` · ${a.matches} trận`));
+          mid.append(el("strong", null, a.name), el("small", null, t("nMatches")(a.matches)));
           r.append(img, mid, el("span", null, `${a.winRate}% · ${a.kd} KD`));
           ab.append(r);
         });
@@ -1678,8 +2129,8 @@
             img.alt = m.agent || "";
             const mid = el("div");
             mid.append(el("strong", null, m.map || "—"), el("small", null, `${m.kills}/${m.deaths}/${m.assists} · ACS ${m.acs}`));
-            const res = el("div", "res", `${m.result === "W" ? "THẮNG" : m.result === "L" ? "THUA" : "HÒA"} ${m.score}`);
-            res.append(el("small", null, m.startedAt ? ago(m.startedAt) : ""));
+            const res = el("div", "res", `${t("result")[m.result]} ${m.score}`);
+            res.append(el("small", null, m.startedAt ? ago(m.startedAt, true) : ""));
             row.append(img, mid, res);
             list.append(row);
           });
@@ -1687,14 +2138,78 @@
         }
       }
 
+      // ---------- Language switch ----------
+      function applyLang() {
+        document.documentElement.lang = lang;
+        document.title = t("pageTitle");
+        document.querySelectorAll("[data-i18n]").forEach((n) => (n.textContent = t(n.dataset.i18n)));
+        document.querySelectorAll("[data-i18n-aria]").forEach((n) =>
+          n.setAttribute("aria-label", t(n.dataset.i18nAria).replace(/[[\]]/g, "").trim())
+        );
+        document.querySelectorAll(".langSwitch button").forEach((b) =>
+          b.setAttribute("aria-pressed", String(b.dataset.lang === lang))
+        );
+        renderStats();
+        renderSkills();
+        renderOracle();
+        renderSpots();
+        renderLog();
+        renderValorant();
+      }
+
+      document.querySelectorAll(".langSwitch button").forEach((b) =>
+        b.addEventListener("click", () => {
+          if (b.dataset.lang === lang) return;
+          lang = b.dataset.lang;
+          try {
+            localStorage.setItem("lang", lang);
+          } catch (e) {}
+          const url = new URL(location.href);
+          url.searchParams.delete("lang");
+          history.replaceState(null, "", url);
+          applyLang();
+        })
+      );
+
+      applyLang();
+
+      // ---------- GitHub data ----------
+      const gh = (path) =>
+        fetch("https://api.github.com/" + path, { headers: { Accept: "application/vnd.github+json" } })
+          .then((r) => (r.ok ? r.json() : Promise.reject(r.status)));
+
+      gh("users/" + GH_USER)
+        .then((u) => {
+          $("awakened").textContent = fmtDate(u.created_at);
+          $("repoCount").textContent = u.public_repos;
+          $("followerCount").textContent = u.followers;
+        })
+        .catch(() => {});
+
+      gh("users/" + GH_USER + "/repos?per_page=100&sort=pushed")
+        .then((repos) => {
+          data.allRepos = repos.filter((r) => !r.fork);
+          data.repos = repos
+            .filter((r) => !r.fork)
+            .sort((a, b) => b.stargazers_count - a.stargazers_count || new Date(b.pushed_at) - new Date(a.pushed_at))
+            .slice(0, 2);
+        })
+        .catch(() => (data.repos = null))
+        .finally(() => {
+          renderSpots();
+          renderTopLang();
+        });
+
+      gh("users/" + GH_USER + "/events/public?per_page=8")
+        .then((events) => (data.events = events))
+        .catch(() => (data.events = null))
+        .finally(renderLog);
+
       fetch("/api/valorant")
         .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
-        .then(renderValorant)
-        .catch(() => {
-          const body = $("valBody");
-          body.textContent = "";
-          body.append(el("div", "empty", "Chưa lấy được dữ liệu Valorant lúc này. Xem trực tiếp trên tracker.gg ở góc phải."));
-        });
+        .then((v) => (data.val = v))
+        .catch(() => (data.val = null))
+        .finally(renderValorant);
 
       // ---------- Mana motes ----------
       (function motes() {
