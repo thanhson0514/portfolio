@@ -713,6 +713,963 @@
         overflow: visible;
       }
 
+      /* ---------- Main campaign ---------- */
+      .campHead {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 18px;
+        margin-bottom: 14px;
+      }
+
+      .campName {
+        display: block;
+        font-size: 26px;
+        letter-spacing: 0.04em;
+      }
+
+      .campDesc {
+        max-width: 560px;
+        margin: 2px 0 0;
+        font-size: 15px;
+        line-height: 1.45;
+        color: var(--muted);
+      }
+
+      .campStats {
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        gap: 8px;
+      }
+
+      .campStat {
+        min-width: 92px;
+        padding: 8px 12px;
+        text-align: center;
+        border: 1px solid rgba(77, 141, 255, 0.3);
+        background: rgba(5, 10, 24, 0.5);
+      }
+
+      .campStat b {
+        display: block;
+        font-size: 22px;
+        color: var(--cyan);
+      }
+
+      .campStat small {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+      }
+
+      .quest-log {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.25fr);
+        gap: 14px;
+      }
+
+      .qList {
+        display: grid;
+        gap: 6px;
+        align-content: start;
+      }
+
+      .qItem {
+        position: relative;
+        display: grid;
+        grid-template-columns: 38px minmax(0, 1fr) auto;
+        gap: 12px;
+        align-items: center;
+        width: 100%;
+        padding: 10px 12px;
+        text-align: left;
+        font: inherit;
+        color: var(--text);
+        background: rgba(77, 141, 255, 0.05);
+        border: 1px solid rgba(77, 141, 255, 0.14);
+        border-left: 3px solid transparent;
+        cursor: pointer;
+        transition: background 140ms ease, border-color 140ms ease;
+      }
+
+      .qItem:hover {
+        background: rgba(77, 141, 255, 0.1);
+      }
+
+      .qItem[aria-pressed="true"] {
+        background: linear-gradient(90deg, rgba(94, 225, 255, 0.14), rgba(77, 141, 255, 0.04));
+        border-color: rgba(94, 225, 255, 0.45);
+        border-left-color: var(--cyan);
+      }
+
+      .qItem:focus-visible {
+        outline: 2px solid var(--text);
+        outline-offset: 1px;
+      }
+
+      .qIco {
+        width: 38px;
+        height: 38px;
+        display: grid;
+        place-items: center;
+        border-radius: 10px;
+        background: #0b1428;
+        border: 1px solid rgba(94, 225, 255, 0.35);
+        color: var(--cyan);
+        font-size: 16px;
+      }
+
+      .qItem b {
+        display: block;
+        font-size: 16px;
+        line-height: 1.15;
+      }
+
+      .qItem small {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.04em;
+        color: var(--muted);
+      }
+
+      .qStars {
+        color: var(--r-s);
+        letter-spacing: 0.08em;
+      }
+
+      .qStatus {
+        padding: 3px 7px;
+        font-family: var(--mono);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        white-space: nowrap;
+        color: var(--r-d);
+        border: 1px solid color-mix(in srgb, var(--r-d) 50%, transparent);
+      }
+
+      .qStatus.active {
+        color: var(--cyan);
+        border-color: rgba(94, 225, 255, 0.5);
+      }
+
+      .qStatus.active::before {
+        content: "";
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        margin-right: 6px;
+        vertical-align: 1px;
+        border-radius: 50%;
+        background: var(--cyan);
+      }
+
+      .qDetail {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        padding: 16px 18px;
+        background:
+          radial-gradient(400px 160px at 100% 0%, rgba(94, 225, 255, 0.08), transparent 70%),
+          rgba(5, 10, 24, 0.6);
+        border: 1px solid rgba(77, 141, 255, 0.25);
+        border-top: 2px solid var(--cyan);
+      }
+
+      .qdTop {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .qDetail h3 {
+        margin: 2px 0 0;
+        font-size: 24px;
+        line-height: 1.1;
+      }
+
+      .qSub {
+        margin-top: 4px;
+        font-family: var(--mono);
+        font-size: 12px;
+        letter-spacing: 0.04em;
+        color: var(--muted);
+      }
+
+      .qSub b {
+        color: var(--cyan);
+        font-weight: 500;
+      }
+
+      .qBrief {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      .qSec .label {
+        display: block;
+        margin-bottom: 7px;
+      }
+
+      .qObj {
+        display: grid;
+        gap: 6px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .qObj li {
+        display: grid;
+        grid-template-columns: 18px minmax(0, 1fr);
+        gap: 8px;
+        font-size: 15px;
+        line-height: 1.35;
+        color: var(--text);
+      }
+
+      .qObj li::before {
+        content: "✓";
+        width: 18px;
+        height: 18px;
+        display: grid;
+        place-items: center;
+        margin-top: 1px;
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--bg);
+        background: var(--r-d);
+      }
+
+      .qProg {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--r-d);
+      }
+
+      .qProg i {
+        flex: 1;
+        height: 3px;
+        background: var(--r-d);
+      }
+
+      .qPhases {
+        display: grid;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .qPhases li {
+        position: relative;
+        padding: 0 0 12px 20px;
+        border-left: 1px solid rgba(94, 225, 255, 0.3);
+      }
+
+      .qPhases li:last-child {
+        padding-bottom: 0;
+        border-left-color: transparent;
+      }
+
+      .qPhases li::before {
+        content: "";
+        position: absolute;
+        left: -5px;
+        top: 3px;
+        width: 9px;
+        height: 9px;
+        background: var(--bg);
+        border: 2px solid var(--cyan);
+        transform: rotate(45deg);
+      }
+
+      .qPhases li.now::before {
+        background: var(--cyan);
+      }
+
+      .qPhases .when {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        color: var(--cyan);
+      }
+
+      .qPhases b {
+        display: block;
+        margin: 1px 0 2px;
+        font-size: 15px;
+        line-height: 1.25;
+      }
+
+      .qPhases p {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.4;
+        color: var(--muted);
+      }
+
+      .qSkills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .qSkill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 9px 4px 6px;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--text);
+        background: #0b1428;
+        border: 1px solid rgba(77, 141, 255, 0.3);
+        border-radius: 6px;
+      }
+
+      .qSkill .tGlyph {
+        width: 16px;
+        height: 16px;
+        font-size: 13px;
+        line-height: 16px;
+        color: var(--cyan);
+      }
+
+      .qReward {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        padding: 10px 12px;
+        background: rgba(255, 200, 69, 0.06);
+        border: 1px dashed rgba(255, 200, 69, 0.4);
+      }
+
+      .qReward > i {
+        font-size: 18px;
+        color: var(--r-s);
+      }
+
+      .qReward span {
+        display: block;
+        font-size: 15px;
+        line-height: 1.35;
+      }
+
+      .qReward b {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        color: var(--r-s);
+      }
+
+      /* ---------- Achievements ---------- */
+      .achHead {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px 18px;
+        margin-bottom: 14px;
+      }
+
+      .achHead .bar {
+        flex: 1;
+        min-width: 140px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--r-d), var(--cyan));
+      }
+
+      .achCount {
+        font-family: var(--mono);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        color: var(--cyan);
+      }
+
+      .achMedals {
+        display: flex;
+        gap: 12px;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .achMedals span::before {
+        content: "●";
+        margin-right: 5px;
+        color: var(--mc);
+      }
+
+      .achGroup + .achGroup {
+        margin-top: 14px;
+      }
+
+      .achGroup > .label {
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      .achGrid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .ach {
+        --mc: var(--blue);
+        display: grid;
+        grid-template-columns: 46px minmax(0, 1fr);
+        gap: 12px;
+        padding: 12px;
+        background: linear-gradient(135deg, color-mix(in srgb, var(--mc) 10%, transparent), transparent 55%), rgba(5, 10, 24, 0.5);
+        border: 1px solid color-mix(in srgb, var(--mc) 30%, transparent);
+      }
+
+      .medal {
+        width: 46px;
+        height: 46px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        font-size: 18px;
+        color: var(--mc);
+        background: radial-gradient(circle at 35% 30%, color-mix(in srgb, var(--mc) 30%, transparent), #0b1428 70%);
+        border: 2px solid var(--mc);
+      }
+
+      .ach .tier {
+        font-family: var(--mono);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--mc);
+      }
+
+      .ach b {
+        display: block;
+        margin: 2px 0;
+        font-size: 16px;
+        line-height: 1.2;
+      }
+
+      .ach small {
+        display: block;
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--muted);
+      }
+
+      .ach p {
+        margin: 6px 0 0;
+        font-size: 14px;
+        line-height: 1.4;
+        color: var(--muted);
+      }
+
+      .ach a {
+        display: inline-block;
+        margin-top: 6px;
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        color: var(--cyan);
+      }
+
+      /* ---------- Skill tree ---------- */
+      .treeHead {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 6px 16px;
+        margin-bottom: 12px;
+      }
+
+      .treePts {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        color: var(--cyan);
+      }
+
+      .treeWrap {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 270px;
+        gap: 18px;
+      }
+
+      .treeScroll {
+        overflow-x: auto;
+        padding: 14px 4px 6px;
+        background:
+          radial-gradient(420px 220px at 50% 0%, rgba(77, 141, 255, 0.12), transparent 70%),
+          rgba(5, 10, 24, 0.45);
+        border: 1px solid rgba(77, 141, 255, 0.14);
+      }
+
+      .tree {
+        position: relative;
+        min-width: 640px;
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        row-gap: 30px;
+        justify-items: center;
+      }
+
+      .tree.sub {
+        row-gap: 26px;
+      }
+
+      .tree.sub .tIcon {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+      }
+
+      .tree.sub .tGlyph {
+        width: 22px;
+        height: 22px;
+        font-size: 18px;
+        line-height: 22px;
+      }
+
+      .subDivider {
+        min-width: 640px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 26px 0 18px;
+        font-family: var(--mono);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--violet);
+      }
+
+      .subDivider::before,
+      .subDivider::after {
+        content: "";
+        flex: 1;
+        border-top: 1px dashed rgba(139, 123, 255, 0.45);
+      }
+
+      .treeLinks {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        overflow: visible;
+      }
+
+      .treeLinks path {
+        fill: none;
+        stroke: rgba(77, 141, 255, 0.3);
+        stroke-width: 2;
+      }
+
+      .treeLinks path.on {
+        stroke: var(--cyan);
+        stroke-dasharray: 6 4;
+        animation: flow 900ms linear infinite;
+        filter: drop-shadow(0 0 4px rgba(94, 225, 255, 0.8));
+      }
+
+      @keyframes flow {
+        to { stroke-dashoffset: -10; }
+      }
+
+      .tNode {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        justify-items: center;
+        gap: 6px;
+        width: 100%;
+        max-width: 120px;
+        padding: 0;
+        background: none;
+        border: 0;
+        color: var(--muted);
+        font: inherit;
+        cursor: pointer;
+      }
+
+      .tIcon {
+        position: relative;
+        width: 50px;
+        height: 50px;
+        display: grid;
+        place-items: center;
+        border-radius: 14px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0) 60%), #0b1428;
+        border: 1px solid color-mix(in srgb, var(--rc) 40%, transparent);
+        transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+      }
+
+      .tGlyph {
+        position: relative;
+        width: 26px;
+        height: 26px;
+        object-fit: contain;
+        font-size: 22px;
+        line-height: 26px;
+        text-align: center;
+        color: var(--rc);
+      }
+
+      img.neg {
+        filter: invert(1);
+      }
+
+      .tRk {
+        position: absolute;
+        right: -7px;
+        bottom: -6px;
+        min-width: 20px;
+        padding: 2px 4px;
+        font-family: var(--head);
+        font-size: 11px;
+        font-weight: 700;
+        line-height: 1;
+        text-align: center;
+        color: var(--rc);
+        background: #0b1428;
+        border: 1px solid color-mix(in srgb, var(--rc) 60%, transparent);
+        border-radius: 6px;
+      }
+
+      .tName {
+        max-width: 100%;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1.15;
+        text-align: center;
+      }
+
+      .tNode.core .tIcon {
+        width: 64px;
+        height: 64px;
+        border-radius: 18px;
+      }
+
+      .tNode.core .tGlyph {
+        width: 34px;
+        height: 34px;
+      }
+
+      .tNode.core .tName {
+        font-size: 15px;
+        color: var(--text);
+      }
+
+      .tNode.lit .tName {
+        color: var(--text);
+      }
+
+      .tNode.lit .tIcon {
+        border-color: color-mix(in srgb, var(--rc) 75%, transparent);
+      }
+
+      .tNode:hover .tIcon,
+      .tNode:focus-visible .tIcon {
+        transform: translateY(-2px);
+      }
+
+      .tNode:focus-visible {
+        outline: none;
+      }
+
+      .tNode:focus-visible .tName {
+        text-decoration: underline;
+      }
+
+      .tNode[aria-pressed="true"] .tIcon {
+        border-color: var(--rc);
+        box-shadow: 0 0 0 4px color-mix(in srgb, var(--rc) 18%, transparent);
+      }
+
+      .tNode[aria-pressed="true"] .tName {
+        color: var(--cyan);
+      }
+
+      .tBranch {
+        align-self: end;
+        padding: 3px 8px;
+        font-family: var(--mono);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        white-space: nowrap;
+        text-transform: uppercase;
+        color: var(--muted);
+        border-top: 1px solid rgba(77, 141, 255, 0.3);
+      }
+
+      .treeInfo,
+      .invCard {
+        --rc: var(--blue);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 14px;
+        background: rgba(5, 10, 24, 0.6);
+        border: 1px solid rgba(77, 141, 255, 0.25);
+        border-top: 2px solid var(--rc);
+        align-self: start;
+      }
+
+      .tiHead {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .tiHead strong {
+        display: block;
+        font-size: 20px;
+        line-height: 1.1;
+      }
+
+      .tiRank {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .tiRank .rank {
+        --s: 28px;
+      }
+
+      .tiRank b {
+        font-size: 18px;
+      }
+
+      .tiRank .skillBar {
+        flex: 1;
+        margin: 0;
+      }
+
+      .treeInfo p,
+      .invCard p {
+        margin: 0;
+        font-size: 15px;
+        line-height: 1.45;
+        color: var(--text);
+      }
+
+      .tiLinks {
+        display: grid;
+        gap: 4px;
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .tiLinks .label {
+        margin-right: 6px;
+      }
+
+      /* ---------- Arsenal (inventory) ---------- */
+      .inv {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 270px;
+        gap: 18px;
+      }
+
+      .invTop {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .invTabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+      }
+
+      .invTabs button {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 5px 9px;
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--muted);
+        background: rgba(5, 10, 24, 0.55);
+        border: 1px solid rgba(77, 141, 255, 0.2);
+        cursor: pointer;
+      }
+
+      .invTabs button:hover {
+        color: var(--text);
+        border-color: rgba(94, 225, 255, 0.4);
+      }
+
+      .invTabs button[aria-pressed="true"] {
+        color: var(--bg);
+        background: var(--cyan);
+        border-color: var(--cyan);
+      }
+
+      .invCount {
+        flex: none;
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+      }
+
+      .invGrid {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 5px;
+        padding: 8px;
+        background: rgba(5, 10, 24, 0.5);
+        border: 1px solid rgba(77, 141, 255, 0.14);
+      }
+
+      .slot {
+        --rc: var(--line);
+        position: relative;
+        aspect-ratio: 1;
+        display: grid;
+        place-items: center;
+        padding: 0;
+        background:
+          radial-gradient(circle at 50% 60%, color-mix(in srgb, var(--rc) 22%, transparent), transparent 70%),
+          #0a1326;
+        border: 1px solid color-mix(in srgb, var(--rc) 55%, transparent);
+        color: var(--rc);
+        cursor: pointer;
+        transition: transform 120ms ease, border-color 120ms ease;
+      }
+
+      .slot::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-top: 9px solid var(--rc);
+        border-right: 9px solid transparent;
+      }
+
+      .slot .tGlyph {
+        width: 56%;
+        height: 56%;
+        font-size: 20px;
+        line-height: 1;
+        display: grid;
+        place-items: center;
+      }
+
+      .slot:hover {
+        transform: translateY(-1px);
+        border-color: var(--rc);
+      }
+
+      .slot[aria-pressed="true"] {
+        border-color: var(--cyan);
+        outline: 2px solid var(--cyan);
+        outline-offset: 1px;
+      }
+
+      .slot:focus-visible {
+        outline: 2px solid var(--text);
+        outline-offset: 1px;
+      }
+
+      .slot.empty {
+        cursor: default;
+        background: rgba(10, 19, 38, 0.5);
+        border: 1px dashed rgba(77, 141, 255, 0.12);
+      }
+
+      .slot.empty::before {
+        display: none;
+      }
+
+      .invLegend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 16px;
+        margin-top: 10px;
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+      }
+
+      .invLegend span::before {
+        content: "";
+        display: inline-block;
+        width: 9px;
+        height: 9px;
+        margin-right: 6px;
+        background: var(--rc);
+      }
+
+      .icHead {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .icHead .slot {
+        width: 56px;
+        flex: none;
+        cursor: default;
+      }
+
+      .icHead .slot:hover {
+        transform: none;
+      }
+
+      .icHead strong {
+        display: block;
+        font-size: 20px;
+        line-height: 1.1;
+        color: var(--rc);
+      }
+
+      .icMeta {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .icStars {
+        color: var(--rc);
+        letter-spacing: 0.1em;
+      }
+
+      .icFoot {
+        margin-top: auto;
+        padding-top: 10px;
+        border-top: 1px dashed rgba(77, 141, 255, 0.2);
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+      }
+
+      .icFoot b {
+        color: var(--text);
+      }
+
       .poly {
         transform-origin: 120px 120px;
         animation: polyIn 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.6s both;
@@ -1274,6 +2231,19 @@
         .skillBody {
           grid-template-columns: 1fr;
         }
+        .campHead {
+          flex-direction: column;
+        }
+        .treeWrap,
+        .inv {
+          grid-template-columns: 1fr;
+        }
+        .quest-log {
+          grid-template-columns: 1fr;
+        }
+        .achGrid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
         .valGrid .valBox:nth-child(2) {
           grid-column: 1 / -1;
           order: 3;
@@ -1324,6 +2294,31 @@
         }
         .skillIcons {
           display: none;
+        }
+        .achGrid {
+          grid-template-columns: 1fr;
+        }
+        .qItem {
+          grid-template-columns: 34px minmax(0, 1fr);
+        }
+        .qItem .qStatus {
+          grid-column: 2;
+          justify-self: start;
+        }
+        .invGrid {
+          grid-template-columns: repeat(6, minmax(0, 1fr));
+        }
+        .invTop {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .campStats {
+          width: 100%;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        .campStat {
+          min-width: 0;
+          padding: 8px 6px;
         }
         .skillInfo .tools {
           display: block;
@@ -1406,7 +2401,7 @@
             <div class="win-title" data-i18n="characterTitle"></div>
             <div class="rows">
               <div class="row"><span class="label" data-i18n="role"></span><span data-i18n="roleVal"></span></div>
-              <div class="row"><span class="label" data-i18n="focus"></span><span>Frontend · Backend · APIs</span></div>
+              <div class="row"><span class="label" data-i18n="focus"></span><span>Fullstack · 3D/GIS · AI Agent</span></div>
               <div class="row"><span class="label" data-i18n="baseRow"></span><span data-i18n="country"></span></div>
               <div class="row"><span class="label" data-i18n="repos"></span><span id="repoCount">—</span></div>
               <div class="row"><span class="label" data-i18n="followers"></span><span id="followerCount">—</span></div>
@@ -1488,8 +2483,101 @@
           </div>
         </section>
 
+        <!-- SKILL TREE -->
+        <section class="win span-12" style="--i: 5" data-i18n-aria="treeTitle">
+          <div class="win-in">
+            <div class="win-title" data-i18n="treeTitle"></div>
+            <div class="treeHead">
+              <span class="label" data-i18n="treeHint"></span>
+              <span class="treePts" id="treePts"></span>
+            </div>
+            <div class="treeWrap">
+              <div class="treeScroll">
+                <div class="tree" id="tree"><svg class="treeLinks" aria-hidden="true"></svg></div>
+                <div class="subDivider"><span data-i18n="treeSubTitle"></span></div>
+                <div class="tree sub" id="treeSub"><svg class="treeLinks" aria-hidden="true"></svg></div>
+              </div>
+              <aside class="treeInfo" id="treeInfo" aria-live="polite"></aside>
+            </div>
+            <div class="win-foot"><span data-i18n="treeFoot"></span></div>
+          </div>
+        </section>
+
+        <!-- QUEST CHAIN (work experience, from CV) -->
+        <section class="win span-12" style="--i: 6" data-i18n-aria="jTitle">
+          <div class="win-in">
+            <div class="win-title" data-i18n="jTitle"></div>
+            <div class="campHead">
+              <div>
+                <span class="label" data-i18n="jTag"></span>
+                <strong class="campName" data-i18n="jName"></strong>
+                <p class="campDesc" data-i18n="jDesc"></p>
+              </div>
+              <div class="campStats" id="jStats"></div>
+            </div>
+            <div class="quest-log">
+              <div class="qList" id="jList" role="group" data-i18n-aria="jListAria"></div>
+              <article class="qDetail" id="jDetail" aria-live="polite"></article>
+            </div>
+            <div class="win-foot"><span data-i18n="jFoot"></span></div>
+          </div>
+        </section>
+
+        <!-- MAIN CAMPAIGN (work project) -->
+        <section class="win span-12" style="--i: 7" data-i18n-aria="campaignTitle">
+          <div class="win-in">
+            <div class="win-title" data-i18n="campaignTitle"></div>
+            <div class="campHead">
+              <div>
+                <span class="label" data-i18n="campaignTag"></span>
+                <strong class="campName">ADSCivil CDE</strong>
+                <p class="campDesc" data-i18n="campaignDesc"></p>
+              </div>
+              <div class="campStats" id="campStats"></div>
+            </div>
+            <div class="quest-log">
+              <div class="qList" id="qList" role="group" data-i18n-aria="questListAria"></div>
+              <article class="qDetail" id="qDetail" aria-live="polite"></article>
+            </div>
+            <div class="win-foot"><span data-i18n="campaignFoot"></span></div>
+          </div>
+        </section>
+
+        <!-- ACHIEVEMENTS (from CV) -->
+        <section class="win span-12" style="--i: 8" data-i18n-aria="achTitle">
+          <div class="win-in">
+            <div class="win-title" data-i18n="achTitle"></div>
+            <div class="achHead">
+              <span class="achCount" id="achCount"></span>
+              <span class="bar" aria-hidden="true"></span>
+              <span class="achMedals" id="achMedals"></span>
+            </div>
+            <div id="achBody"></div>
+            <div class="win-foot"><span data-i18n="achFoot"></span></div>
+          </div>
+        </section>
+
+        <!-- ARSENAL (tools in use, game inventory) -->
+        <section class="win span-12" style="--i: 9" data-i18n-aria="arsenalTitle">
+          <div class="win-in">
+            <div class="win-title" data-i18n="arsenalTitle"></div>
+            <div class="inv">
+              <div>
+                <div class="invTop">
+                  <div class="invTabs" id="invTabs" role="group" data-i18n-aria="invFilter"></div>
+                  <span class="invCount" id="invCount"></span>
+                </div>
+                <div class="invGrid" id="invGrid"></div>
+                <div class="invLegend" id="invLegend"></div>
+              </div>
+              <aside class="invCard" id="invCard" aria-live="polite"></aside>
+            </div>
+            <div class="win-foot"><span data-i18n="arsenalFoot"></span></div>
+          </div>
+        </section>
+
         <!-- SỞ THÍCH · GAME (Valorant live via /api/valorant) -->
-        <section class="win span-12" style="--i: 5" data-i18n-aria="gameTitle">
+        <section class="win span-12" style="--i: 10" data-i18n-aria="gameTitle">
           <div class="win-in">
             <div class="win-title" data-i18n="gameTitle"></div>
             <div class="valHead">
@@ -1508,15 +2596,15 @@
         </section>
 
         <!-- SPOTLIGHTS (GitHub repos) -->
-        <section class="win span-6" style="--i: 6" data-i18n-aria="spotlight">
+        <section class="win span-6" style="--i: 11" data-i18n-aria="spotlight">
           <div class="win-in" id="spot0"></div>
         </section>
-        <section class="win span-6" style="--i: 7" data-i18n-aria="spotlight">
+        <section class="win span-6" style="--i: 12" data-i18n-aria="spotlight">
           <div class="win-in" id="spot1"></div>
         </section>
 
         <!-- SYSTEM LOG (GitHub events) -->
-        <section class="win span-12" style="--i: 8" data-i18n-aria="logTitle">
+        <section class="win span-12" style="--i: 13" data-i18n-aria="logTitle">
           <div class="win-in">
             <div class="win-title" data-i18n="logTitle"></div>
             <div class="log" id="log"></div>
@@ -1538,7 +2626,7 @@
           licenseTitle: "[ Thẻ Thợ Săn ]",
           rank: "Hạng",
           class: "LỚP",
-          classVal: "Lập trình viên Web · Fullstack",
+          classVal: "Kỹ sư phần mềm · Full Stack",
           base: "NƠI Ở",
           country: "Việt Nam",
           title: "DANH HIỆU",
@@ -1547,28 +2635,86 @@
           rankWord: "HẠNG",
           characterTitle: "[ Nhân vật ]",
           role: "Vai trò",
-          roleVal: "Lập trình viên Web",
-          focus: "Chuyên môn",
+          roleVal: "Kỹ sư phần mềm",
+          focus: "Chuyên hệ",
           baseRow: "Nơi ở",
           repos: "Repo",
           followers: "Người theo dõi",
-          lore: "Xây dựng web app từ đầu đến cuối: React/Next.js ở frontend, Node/NestJS ở backend, Postgres và Redis lưu dữ liệu, đóng gói và triển khai bằng Docker.",
+          lore: "Xây dựng web app từ đầu đến cuối: React ở frontend, NestJS ở backend, MongoDB và Redis lưu dữ liệu, triển khai bằng Docker và Kubernetes. Thế mạnh là viewer 3D/GIS trên trình duyệt và trợ lý AI có công cụ.",
           questTitle: "[ Nhiệm vụ hoàn thành ]",
           joinParty: "Vào party",
           cleared: "HOÀN THÀNH 4 / 4",
           enter: "VÀO ›",
-          skillsTitle: "[ Bảng kỹ năng ]",
+          skillsTitle: "[ Bảng chỉ số ]",
           radarAria: "Biểu đồ radar kỹ năng",
           overallRank: "XẾP HẠNG TỔNG",
-          avgOf: "ĐIỂM TB 6 KỸ NĂNG",
+          avgOf: "TRUNG BÌNH 6 CHỈ SỐ",
           you: (n) => `▲ BẠN · ${n}`,
           nextAt: (r, n) => `${r} TỪ ${n} ĐIỂM`,
           maxRank: "HẠNG TỐI ĐA",
-          topLang: (l, p) => `Ngôn ngữ chính trên GitHub: ${l} ${p}%`,
-          selfAssessed: "TỰ ĐÁNH GIÁ · THANG 0–100",
+          topLang: (l, p) => `Ngôn ngữ chủ lực trên GitHub: ${l} ${p}%`,
+          selfAssessed: "CHỈ SỐ TỰ THẨM ĐỊNH · THANG 0–100",
           skillGroups: {
             backend: "Backend", frontend: "Frontend", language: "Ngôn ngữ",
             database: "Dữ liệu", api: "API", devops: "DevOps",
+          },
+          campaignTitle: "[ Nhiệm vụ chính ]",
+          questListAria: "Danh sách nhiệm vụ",
+          qMain: (n) => `NHIỆM VỤ CHÍNH · #${String(n).padStart(2, "0")}`,
+          qStatus: { done: "ĐÃ CHINH PHỤC", active: "ĐANG DIỄN RA" },
+          qDiff: "Độ khó",
+          qBrief: "Tóm tắt nhiệm vụ",
+          qObj: "Mục tiêu đã chinh phục",
+          qSkills: "Kỹ năng đã trang bị",
+          qReward: "Phần thưởng",
+          qCommits: (n) => `~${n} COMMIT`,
+          qPhases: "Các màn đã vượt qua",
+          qDone: (a, b) => `${a}/${b} MỤC TIÊU`,
+          jTitle: "[ Biên niên sử · Kinh nghiệm ]",
+          jTag: "Cốt truyện chính · Hành trình nghề nghiệp",
+          jName: "Từ tân binh thực tập đến Full Stack",
+          jDesc: "Mỗi công ty là một chương: bắt đầu từ backend với Kafka và NestJS, sang fullstack, rồi đi sâu vào 3D/BIM và AI ở chương hiện tại.",
+          jListAria: "Danh sách kinh nghiệm làm việc",
+          jFoot: "GHI CHÉP TỪ HỒ SƠ (CV) · CHƯƠNG MỚI NHẤT Ở TRÊN",
+          jStats: { companies: "GUILD ĐÃ GIA NHẬP", first: "NGÀY XUẤT PHÁT", years: "NĂM KINH NGHIỆM" },
+          jChapter: (n, c) => `CHƯƠNG ${n} · ${c.toUpperCase()}`,
+          jProject: "Dự án",
+          jWork: "Mục tiêu đã hoàn thành",
+          qPresent: "nay",
+          achTitle: "[ Thành tựu ]",
+          achFoot: "TRÍCH TỪ HỒ SƠ (CV) · CÚP, HUY HIỆU, NHIỆM VỤ HỌC VIỆN",
+          achCount: (n) => `ĐÃ MỞ KHOÁ ${n} / ${n}`,
+          achGroups: { award: "Phòng trưng bày cúp", cert: "Huy hiệu chứng nhận", act: "Nhiệm vụ học viện · Nghiên cứu & hoạt động" },
+          achTier: { gold: "Vàng", silver: "Bạc", bronze: "Đồng", final: "Chung kết", honor: "Ghi nhận", cert: "Chứng chỉ", act: "Hoạt động" },
+          achView: "XEM CHỨNG CHỈ ›",
+          campaignTag: "Khu vực hiện tại · Nền tảng CDE ngành xây dựng",
+          campaignDesc: "Môi trường dữ liệu chung (CDE) cho dự án xây dựng: quản lý tệp và phiên bản, phê duyệt, issue, báo cáo thi công, viewer 3D BIM và bản đồ GIS, cùng trợ lý AI thao tác trực tiếp trên dữ liệu dự án.",
+          campaignFoot: "SỐ LIỆU TRUY XUẤT TỪ GIT LOG (GỒM LỊCH SỬ SVN CŨ) · COMMIT THEO MẢNG LÀ ƯỚC TÍNH",
+          campStats: { commits: "COMMIT", since: "NHẬP CUỘC", rank: "HẠNG ĐÓNG GÓP" },
+          campTop: "#1",
+          arsenalTitle: "[ Kho vũ khí ]",
+          arsenalFoot: "TRANG BỊ ĐANG MANG · ĐỘ HIẾM = TẦN SUẤT SỬ DỤNG",
+          invFilter: "[ Lọc theo nhóm ]",
+          invAll: "Tất cả",
+          invSlots: (n, m) => `HÀNH TRANG ${n} / ${m}`,
+          rarity: { L: "Huyền thoại", E: "Sử thi", R: "Hiếm", C: "Thường" },
+          invUsedIn: "NHẬN ĐƯỢC TẠI",
+          treeTitle: "[ Cây kỹ năng ]",
+          treeHint: "Chạm vào một nút để soi đường mở khoá",
+          treePts: (n, m) => `ĐÃ MỞ KHOÁ ${n} NÚT · ${m} NÚT HẠNG S+`,
+          treeCore: "Lõi",
+          treeBranches: { frontend: "Frontend", viz: "3D · GIS", backend: "Backend", ai: "AI", data: "Dữ liệu", devops: "DevOps" },
+          subBranches: { iot: "Nhúng · IoT", native: "Native 3D", cloud: "Cloud · AWS", ml: "Học máy", micro: "Microservice", web: "Web nền tảng" },
+          treeSubTitle: "Nhánh ẩn · mở khoá từ học viện và các nhiệm vụ cũ",
+          treeFrom: "Mở khoá từ",
+          treeLeads: "Mở khoá tiếp",
+          treeEnd: "Đỉnh nhánh, chưa có nút kế tiếp",
+          treeFoot: "CHỈ SỐ TỰ THẨM ĐỊNH · ĐƯỜNG SÁNG = ĐƯỜNG MỞ KHOÁ",
+          nodeAria: (n, r, s) => `${n}, hạng ${r}, ${s} điểm`,
+          arsenalGroups: {
+            frontend: "Frontend", viz: "3D · GIS", backend: "Backend", ai: "AI · Agent",
+            data: "Dữ liệu · Lưu trữ", native: "Native", devops: "DevOps · Hạ tầng", tooling: "Kiểm thử · Công cụ",
+            cloud: "Cloud", iot: "Nhúng · IoT",
           },
           oracleTitle: "[ Lời tiên tri ]",
           scrollOfDay: "LỜI TIÊN TRI HÔM NAY",
@@ -1623,7 +2769,7 @@
           licenseTitle: "[ Hunter License ]",
           rank: "Rank",
           class: "CLASS",
-          classVal: "Web Developer · Fullstack",
+          classVal: "Software Engineer · Full Stack",
           base: "BASE",
           country: "Vietnam",
           title: "TITLE",
@@ -1632,12 +2778,12 @@
           rankWord: "RANK",
           characterTitle: "[ Character ]",
           role: "Role",
-          roleVal: "Web Developer",
-          focus: "Focus",
+          roleVal: "Software Engineer",
+          focus: "Specialty",
           baseRow: "Base",
           repos: "Repos",
           followers: "Followers",
-          lore: "Builds web apps end to end — React/Next.js on the front, Node/NestJS behind it, Postgres and Redis underneath, shipped with Docker.",
+          lore: "Builds web apps end to end — React on the front, NestJS behind it, MongoDB and Redis underneath, shipped with Docker and Kubernetes. Strongest at in-browser 3D/GIS viewers and tool-using AI assistants.",
           questTitle: "[ Quest Complete ]",
           joinParty: "Join the party",
           cleared: "CLEARED 4 / 4",
@@ -1645,15 +2791,73 @@
           skillsTitle: "[ Skill Status ]",
           radarAria: "Skill radar chart",
           overallRank: "OVERALL RANK",
-          avgOf: "AVG OF 6 SKILLS",
+          avgOf: "AVG OF 6 STATS",
           you: (n) => `▲ YOU · ${n}`,
           nextAt: (r, n) => `${r} AT ${n}`,
           maxRank: "MAX RANK",
-          topLang: (l, p) => `Top GitHub language: ${l} ${p}%`,
-          selfAssessed: "SELF-ASSESSED · 0–100 SCALE",
+          topLang: (l, p) => `Main language on GitHub: ${l} ${p}%`,
+          selfAssessed: "SELF-APPRAISED STATS · 0–100 SCALE",
           skillGroups: {
             backend: "Backend", frontend: "Frontend", language: "Languages",
             database: "Database", api: "API", devops: "DevOps",
+          },
+          campaignTitle: "[ Main Quests ]",
+          questListAria: "Quest list",
+          qMain: (n) => `MAIN QUEST · #${String(n).padStart(2, "0")}`,
+          qStatus: { done: "CLEARED", active: "IN PROGRESS" },
+          qDiff: "Difficulty",
+          qBrief: "Quest brief",
+          qObj: "Objectives cleared",
+          qSkills: "Skills equipped",
+          qReward: "Rewards",
+          qCommits: (n) => `~${n} COMMITS`,
+          qPhases: "Stages cleared",
+          qDone: (a, b) => `${a}/${b} OBJECTIVES`,
+          jTitle: "[ Chronicle · Experience ]",
+          jTag: "Main storyline · Career path",
+          jName: "From intern recruit to Full Stack",
+          jDesc: "Each company is a chapter: starting on the backend with Kafka and NestJS, moving to full stack, then going deep into 3D/BIM and AI in the current one.",
+          jListAria: "Work experience list",
+          jFoot: "RECORDED FROM MY CV · LATEST CHAPTER FIRST",
+          jStats: { companies: "GUILDS JOINED", first: "QUEST START", years: "YEARS OF EXPERIENCE" },
+          jChapter: (n, c) => `CHAPTER ${n} · ${c.toUpperCase()}`,
+          jProject: "Project",
+          jWork: "Objectives cleared",
+          qPresent: "now",
+          achTitle: "[ Achievements ]",
+          achFoot: "FROM MY CV · TROPHIES, BADGES, ACADEMY QUESTS",
+          achCount: (n) => `UNLOCKED ${n} / ${n}`,
+          achGroups: { award: "Trophy room", cert: "Certificate badges", act: "Academy quests · Research & activities" },
+          achTier: { gold: "Gold", silver: "Silver", bronze: "Bronze", final: "Finalist", honor: "Recognition", cert: "Certificate", act: "Activity" },
+          achView: "VIEW CERTIFICATE ›",
+          campaignTag: "Current zone · Construction CDE platform",
+          campaignDesc: "A Common Data Environment for construction projects: file and version management, approvals, issues, site reports, 3D BIM and GIS viewers, and an AI assistant that works directly on project data.",
+          campaignFoot: "DATA PULLED FROM THE GIT LOG (INCL. OLD SVN HISTORY) · PER-AREA COMMITS ARE ESTIMATES",
+          campStats: { commits: "COMMITS", since: "JOINED", rank: "CONTRIB RANK" },
+          campTop: "#1",
+          arsenalTitle: "[ Arsenal ]",
+          arsenalFoot: "GEAR ON HAND · RARITY = HOW OFTEN I USE IT",
+          invFilter: "[ Filter by group ]",
+          invAll: "All",
+          invSlots: (n, m) => `BAG ${n} / ${m}`,
+          rarity: { L: "Legendary", E: "Epic", R: "Rare", C: "Common" },
+          invUsedIn: "OBTAINED AT",
+          treeTitle: "[ Skill Tree ]",
+          treeHint: "Tap a node to trace its unlock path",
+          treePts: (n, m) => `${n} NODES UNLOCKED · ${m} AT RANK S+`,
+          treeCore: "Core",
+          treeBranches: { frontend: "Frontend", viz: "3D · GIS", backend: "Backend", ai: "AI", data: "Data", devops: "DevOps" },
+          subBranches: { iot: "Embedded · IoT", native: "Native 3D", cloud: "Cloud · AWS", ml: "ML", micro: "Microservices", web: "Web basics" },
+          treeSubTitle: "Hidden branches · unlocked in the academy and past quests",
+          treeFrom: "Unlocked from",
+          treeLeads: "Unlocks next",
+          treeEnd: "Branch apex, nothing beyond yet",
+          treeFoot: "SELF-APPRAISED STATS · GLOWING LINE = UNLOCK PATH",
+          nodeAria: (n, r, s) => `${n}, rank ${r}, ${s} points`,
+          arsenalGroups: {
+            frontend: "Frontend", viz: "3D · GIS", backend: "Backend", ai: "AI · Agents",
+            data: "Data · Storage", native: "Native", devops: "DevOps · Infra", tooling: "Testing · Tooling",
+            cloud: "Cloud", iot: "Embedded · IoT",
           },
           oracleTitle: "[ Oracle Scroll ]",
           scrollOfDay: "SCROLL OF THE DAY",
@@ -1718,18 +2922,542 @@
       // Self-assessed skills (0–100) — edit freely; ranks, bars, radar and the
       // license card are all derived from these scores.
       const SKILLS = [
-        { key: "STR", group: "backend", score: 76, tools: "Node.js · NestJS · Express",
+        { key: "STR", group: "backend", score: 76, tools: "Node.js · NestJS · BullMQ · Socket.IO · Kafka",
           icons: ["fa-brands fa-node-js", "fa-solid fa-feather", "fa-solid fa-route"] },
-        { key: "AGI", group: "frontend", score: 85, tools: "React · Next.js · Tailwind · Vite",
+        { key: "AGI", group: "frontend", score: 85, tools: "React · Vite · Ant Design · Tailwind · Zustand",
           icons: ["fa-brands fa-react", "fa-solid fa-n", "fa-solid fa-wind", "fa-solid fa-bolt"] },
-        { key: "INT", group: "language", score: 78, tools: "TypeScript · JavaScript",
-          icons: ["fa-solid fa-code", "fa-brands fa-js"] },
-        { key: "VIT", group: "database", score: 66, tools: "PostgreSQL · Redis",
+        { key: "INT", group: "language", score: 78, tools: "TypeScript · JavaScript · C++",
+          icons: ["fa-solid fa-code", "fa-brands fa-js", "fa-solid fa-microchip"] },
+        { key: "VIT", group: "database", score: 66, tools: "MongoDB · Redis · Elasticsearch · PostgreSQL",
           icons: ["fa-solid fa-database", "fa-solid fa-layer-group"] },
-        { key: "LUK", group: "api", score: 74, tools: "GraphQL · REST",
+        { key: "LUK", group: "api", score: 74, tools: "REST · WebSocket · GraphQL · MCP",
           icons: ["fa-solid fa-diagram-project", "fa-solid fa-plug"] },
-        { key: "CHA", group: "devops", score: 55, tools: "Docker · Kubernetes",
-          icons: ["fa-brands fa-docker", "fa-solid fa-dharmachakra"] },
+        { key: "CHA", group: "devops", score: 55, tools: "Docker · Kubernetes · GitLab CI · Nginx",
+          icons: ["fa-brands fa-docker", "fa-solid fa-dharmachakra", "fa-brands fa-gitlab"] },
+      ];
+
+      // Icon spec: "dv:<name>[:variant][!]" = devicon SVG (! = invert for dark logos),
+      // anything else = Font Awesome classes.
+      const DEVICON = "https://cdn.jsdelivr.net/npm/devicon@2.16.0/icons/";
+      function iconEl(spec, cls) {
+        if (spec.startsWith("dv:")) {
+          let s = spec.slice(3);
+          const neg = s.endsWith("!");
+          if (neg) s = s.slice(0, -1);
+          const [n, v = "original"] = s.split(":");
+          const img = document.createElement("img");
+          img.src = `${DEVICON}${n}/${n}-${v}.svg`;
+          img.alt = "";
+          img.loading = "lazy";
+          img.decoding = "async";
+          img.className = cls + (neg ? " neg" : "");
+          return img;
+        }
+        return el("i", `${spec} ${cls}`);
+      }
+
+      // Skill tree: 6 branches × 4 tiers under one core node. Scores are
+      // self-assessed (0–100) and map to the same E→EX ranks as above.
+      const BRANCHES = ["frontend", "viz", "backend", "ai", "data", "devops"];
+      const TREE = [
+        { id: "core", b: null, tier: 0, score: 80, icon: "dv:typescript", name: "TypeScript", parents: [],
+          d: { vi: "Ngôn ngữ chính của cả monorepo, từ giao diện đến từng service phía sau.",
+               en: "Main language across the monorepo, from the UI to every service behind it." } },
+
+        { id: "react", b: "frontend", tier: 1, score: 86, icon: "dv:react", name: "React", parents: ["core"],
+          d: { vi: "React 18 cho toàn bộ ứng dụng CDE: tài liệu, phê duyệt, issue, viewer.",
+               en: "React 18 powering the whole CDE app: documents, approvals, issues, viewers." } },
+        { id: "uikit", b: "frontend", tier: 2, score: 82, icon: "dv:antdesign", name: "Ant Design · Tailwind", parents: ["react"],
+          d: { vi: "Giao diện nghiệp vụ dày thông tin trên Ant Design 6, tinh chỉnh bằng Tailwind.",
+               en: "Dense business UI on Ant Design 6, fine-tuned with Tailwind." } },
+        { id: "state", b: "frontend", tier: 3, score: 78, icon: "fa-solid fa-box-archive", name: "Zustand · React Query", parents: ["uikit"],
+          d: { vi: "Store Zustand chọn theo từng trường, cache dữ liệu server bằng TanStack Query.",
+               en: "Field-level Zustand selectors, with TanStack Query caching server data." } },
+        { id: "editors", b: "frontend", tier: 4, score: 70, icon: "fa-solid fa-diagram-project", name: "React Flow · Slate · Konva", parents: ["state"],
+          d: { vi: "Trình dựng luồng phê duyệt, soạn thảo văn bản và vẽ chú thích lên bản vẽ.",
+               en: "Approval flow builder, rich-text editing and markup drawn over sheets." } },
+
+        { id: "three", b: "viz", tier: 1, score: 80, icon: "dv:threejs!", name: "Three.js", parents: ["react"],
+          d: { vi: "Viewer 3D BIM: cây đối tượng, mặt cắt, cụm lắp ghép, góc nhìn đã lưu.",
+               en: "3D BIM viewer: object tree, section planes, assemblies, saved viewpoints." } },
+        { id: "measure", b: "viz", tier: 2, score: 72, icon: "fa-solid fa-ruler-combined", name: { vi: "Đo đạc · Va chạm", en: "Measure · Clash" }, parents: ["three"],
+          d: { vi: "Đo tự động trên hình học (OBB/PCA) và kiểm tra va chạm giữa các mô hình.",
+               en: "Geometry-based auto measuring (OBB/PCA) and clash checks between models." } },
+        { id: "tiles", b: "viz", tier: 3, score: 76, icon: "fa-solid fa-cubes", name: "3D Tiles", parents: ["measure"],
+          d: { vi: "Stream mô hình rất lớn theo tile, chọn đối tượng nhanh nhờ three-mesh-bvh.",
+               en: "Streams huge models as tiles, with fast picking through three-mesh-bvh." } },
+        { id: "cesium", b: "viz", tier: 4, score: 74, icon: "fa-solid fa-earth-asia", name: "CesiumJS", parents: ["tiles"],
+          d: { vi: "Bản đồ GIS: địa hình, tuyến và trắc dọc, ảnh 360°, xuất KMZ cho Google Earth.",
+               en: "GIS map: terrain, alignments and profiles, 360° photos, KMZ export." } },
+
+        { id: "node", b: "backend", tier: 1, score: 80, icon: "dv:nodejs", name: "Node.js", parents: ["core"],
+          d: { vi: "Nền của mọi service: API chính, SVN gateway, analyzer, document converter.",
+               en: "Runtime behind every service: main API, SVN gateway, analyzer, converter." } },
+        { id: "nest", b: "backend", tier: 2, score: 78, icon: "dv:nestjs", name: "NestJS", parents: ["node"],
+          d: { vi: "Module NestJS với DTO validation, guard phân quyền, Swagger, CQRS.",
+               en: "NestJS modules with DTO validation, permission guards, Swagger and CQRS." } },
+        { id: "queue", b: "backend", tier: 3, score: 74, icon: "dv:socketio!", name: "BullMQ · Socket.IO", parents: ["nest"],
+          d: { vi: "Hàng đợi job chuyển đổi trên Redis, đẩy tiến độ realtime qua WebSocket.",
+               en: "Redis-backed conversion queues with realtime progress over WebSockets." } },
+        { id: "events", b: "backend", tier: 4, score: 64, icon: "dv:apachekafka!", name: "Kafka · CQRS", parents: ["queue"],
+          d: { vi: "Luồng sự kiện giữa các service, tách command/query cho kho tệp lớn.",
+               en: "Event streams between services and a command/query split for large files." } },
+
+        { id: "langchain", b: "ai", tier: 1, score: 72, icon: "fa-solid fa-link", name: "LangChain", parents: ["node"],
+          d: { vi: "Một giao diện cho nhiều nhà cung cấp LLM: Gemini, Claude, OpenAI, Ollama.",
+               en: "One interface over many LLM providers: Gemini, Claude, OpenAI, Ollama." } },
+        { id: "rag", b: "ai", tier: 2, score: 72, icon: "fa-solid fa-magnifying-glass", name: "RAG", parents: ["langchain", "elastic"],
+          d: { vi: "Chỉ mục tài liệu và đối tượng 3D để trợ lý trả lời theo dữ liệu dự án.",
+               en: "Indexes documents and 3D objects so the assistant answers from project data." } },
+        { id: "langgraph", b: "ai", tier: 3, score: 70, icon: "fa-solid fa-circle-nodes", name: "LangGraph", parents: ["rag"],
+          d: { vi: "Agent có trạng thái, dừng graph chờ người dùng xác nhận trước khi ghi dữ liệu.",
+               en: "Stateful agents that pause the graph for user confirmation before any write." } },
+        { id: "mcp", b: "ai", tier: 4, score: 72, icon: "fa-solid fa-plug", name: "MCP · Agent", parents: ["langgraph"],
+          d: { vi: "Công cụ MCP cho agent thao tác CDE và điều khiển viewer 3D bằng câu lệnh tự nhiên.",
+               en: "MCP tools that let the agent operate the CDE and drive the 3D viewer from plain requests." } },
+
+        { id: "mongo", b: "data", tier: 1, score: 72, icon: "dv:mongodb", name: "MongoDB", parents: ["core"],
+          d: { vi: "CSDL chính qua Mongoose, lưu cả checkpoint hội thoại của LangGraph.",
+               en: "Primary database via Mongoose, including LangGraph conversation checkpoints." } },
+        { id: "elastic", b: "data", tier: 2, score: 64, icon: "dv:elasticsearch", name: "Elasticsearch", parents: ["mongo"],
+          d: { vi: "Tìm kiếm toàn văn và chỉ mục đối tượng của mô hình 3D.",
+               en: "Full-text search and the object index of 3D models." } },
+        { id: "redis", b: "data", tier: 3, score: 70, icon: "dv:redis", name: "Redis", parents: ["elastic"],
+          d: { vi: "Cache, khoá phân tán, nền cho BullMQ và Socket.IO adapter.",
+               en: "Cache, distributed locks, and the backbone for BullMQ and the Socket.IO adapter." } },
+        { id: "minio", b: "data", tier: 4, score: 66, icon: "fa-solid fa-hard-drive", name: "MinIO · LFS", parents: ["redis"],
+          d: { vi: "Tệp lớn nằm trên MinIO, SVN chỉ giữ tệp con trỏ.",
+               en: "Large files live in MinIO while SVN keeps only pointer files." } },
+
+        { id: "docker", b: "devops", tier: 1, score: 70, icon: "dv:docker", name: "Docker", parents: ["core"],
+          d: { vi: "Đóng gói mọi service, có base image mang sẵn runtime ODA SDK.",
+               en: "Containers for every service, with a base image carrying the ODA SDK runtime." } },
+        { id: "gitlab", b: "devops", tier: 2, score: 62, icon: "dv:gitlab", name: "GitLab CI/CD", parents: ["docker"],
+          d: { vi: "Pipeline test → build → deploy, chỉ chạy cho service có thay đổi.",
+               en: "Test → build → deploy pipelines that only run for changed services." } },
+        { id: "k8s", b: "devops", tier: 3, score: 56, icon: "dv:kubernetes", name: "Kubernetes", parents: ["gitlab"],
+          d: { vi: "Chạy runner-api chuyển đổi 3D trên cluster, cấu hình bằng Kustomize.",
+               en: "Runs the 3D conversion runner-api on a cluster, configured with Kustomize." } },
+        { id: "elk", b: "devops", tier: 4, score: 52, icon: "dv:kibana", name: "ELK · APM", parents: ["k8s"],
+          d: { vi: "Log tập trung qua Filebeat và Kibana, theo dõi hiệu năng bằng Elastic APM.",
+               en: "Central logs through Filebeat and Kibana, performance tracing with Elastic APM." } },
+      ];
+      // Tier 5: later-stage skills from the Baezeni timeline (SVN history + CV).
+      TREE.push(
+        { id: "gantt", b: "frontend", tier: 5, score: 70, icon: "fa-solid fa-chart-gantt", name: { vi: "Gantt · Timeline 4D", en: "Gantt · 4D timeline" }, parents: ["editors"],
+          d: { vi: "Timeline tiến độ mô hình đồng bộ kéo thả với Gantt, tự phóng to, tô sáng công việc theo ngày đang phát.",
+               en: "Model progress timeline synced with the Gantt on drag, auto-zoom, highlights tasks for the playing date." } },
+        { id: "cesiumlib", b: "viz", tier: 5, score: 72, icon: "fa-solid fa-earth-americas", name: "@adscivil/cesium-viewer", parents: ["cesium"],
+          d: { vi: "Tự đóng gói viewer GIS thành thư viện riêng, phát hành từ v1.2 đến v1.4 kèm CHANGELOG.",
+               en: "Packaged the GIS viewer as an in-house library, released v1.2 through v1.4 with a CHANGELOG." } },
+        { id: "ports", b: "backend", tier: 5, score: 68, icon: "fa-solid fa-puzzle-piece", name: { vi: "Ports & Adapters · Pattern", en: "Ports & Adapters · Patterns" }, parents: ["events"],
+          d: { vi: "Tái cấu trúc open-design-api theo Ports & Adapters; Command/Strategy/State cho gizmo và mặt cắt.",
+               en: "Rebuilt open-design-api on Ports & Adapters; Command/Strategy/State for the gizmo and section tools." } },
+        { id: "aieval", b: "ai", tier: 5, score: 68, icon: "fa-solid fa-vial-circle-check", name: { vi: "Bộ chấm điểm agent", en: "Agent eval suite" }, parents: ["mcp"],
+          d: { vi: "Bộ câu chuẩn chạy trên trình duyệt thật bằng Playwright, chấm theo công cụ agent gọi và câu trả lời.",
+               en: "Benchmark prompts run in a real browser with Playwright, scored on the tools the agent calls and its answers." } },
+        { id: "keycloak", b: "devops", tier: 5, score: 60, icon: "fa-solid fa-user-shield", name: "Keycloak · OAuth", parents: ["elk"],
+          d: { vi: "Máy chủ OAuth cho Kafka: token OIDC/JWT cho producer và consumer, script triển khai.",
+               en: "OAuth server for Kafka: OIDC/JWT tokens for producers and consumers, plus deploy scripts." } }
+      );
+
+      // Side branches (study, research, earlier jobs) drawn in a second grid under the main tree.
+      const SUB_BRANCHES = ["iot", "native", "cloud", "ml", "micro", "web"];
+      TREE.push(
+        { id: "cpp", area: "sub", b: "iot", tier: 1, score: 64, icon: "dv:cplusplus", name: "C/C++", parents: [],
+          d: { vi: "Ngôn ngữ đầu tiên: lập trình nhúng thời sinh viên, runner chuyển đổi 3D ở hiện tại.",
+               en: "First language: embedded work at university, 3D conversion runners today." } },
+        { id: "arduino", area: "sub", b: "iot", tier: 2, score: 58, icon: "dv:arduino", name: "Arduino", parents: ["cpp"],
+          d: { vi: "Dựng mạch demo cho đề tài kiểm soát xe ô tô (NCKH, giải nhì cấp khoa).",
+               en: "Built the demo board for the car access research project (faculty 2nd prize)." } },
+        { id: "rfid", area: "sub", b: "iot", tier: 3, score: 55, icon: "fa-solid fa-id-card", name: "RFID RC522", parents: ["arduino"],
+          d: { vi: "Đọc thẻ RFID qua module RC522 để nhận diện xe ra vào.",
+               en: "Reads RFID tags through an RC522 module to identify vehicles." } },
+        { id: "odacloud", area: "sub", b: "native", tier: 1, score: 64, icon: "fa-solid fa-cloud", name: "ODA Open Cloud", parents: [],
+          d: { vi: "Dựng và vận hành ODA Open Cloud Server trên Docker: server riêng cho từng công ty, API key, nâng cấp, rollback.",
+               en: "Set up and ran ODA Open Cloud Server on Docker: a server per company, API keys, upgrades, rollbacks." } },
+        { id: "oda", area: "sub", b: "native", tier: 2, score: 62, icon: "fa-solid fa-ruler-combined", name: "C++14 · ODA SDK", parents: ["cpp", "odacloud"],
+          d: { vi: "Runner chuyển DWG/RVT/IFC sang 3D Tiles bằng ODA SDK.",
+               en: "Runners that convert DWG/RVT/IFC into 3D Tiles with the ODA SDK." } },
+        { id: "cmake", area: "sub", b: "native", tier: 3, score: 52, icon: "dv:cmake", name: "CMake · FBX SDK", parents: ["oda"],
+          d: { vi: "Build runner native và chuyển đổi mô hình FBX.",
+               en: "Builds the native runners and converts FBX models." } },
+        { id: "aws", area: "sub", b: "cloud", tier: 1, score: 58, icon: "fa-brands fa-aws", name: "AWS · EC2 · S3", parents: [],
+          d: { vi: "Dựng hạ tầng cloud cho đề tài YOLOv8 và cho đội thi JunctionX Hanoi.",
+               en: "Set up cloud infra for the YOLOv8 project and the JunctionX Hanoi team." } },
+        { id: "lambda", area: "sub", b: "cloud", tier: 2, score: 56, icon: "fa-solid fa-bolt", name: "Lambda · API Gateway", parents: ["aws"],
+          d: { vi: "API serverless đứng trước mô hình nhận dạng.",
+               en: "Serverless API in front of the detection model." } },
+        { id: "sage", area: "sub", b: "cloud", tier: 3, score: 50, icon: "fa-solid fa-flask", name: "SageMaker", parents: ["lambda", "yolo"],
+          d: { vi: "Triển khai mô hình YOLOv8 lên AWS.",
+               en: "Hosts the YOLOv8 model on AWS." } },
+        { id: "nn", area: "sub", b: "ml", tier: 1, score: 50, icon: "fa-solid fa-brain", name: { vi: "Mạng nơ-ron", en: "Neural networks" }, parents: [],
+          d: { vi: "Nhận biết biểu cảm khuôn mặt theo thời gian để cảnh báo môi trường làm việc có hại.",
+               en: "Reads facial expressions over time to flag harmful work environments." } },
+        { id: "yolo", area: "sub", b: "ml", tier: 2, score: 55, icon: "fa-solid fa-eye", name: "YOLOv8", parents: ["nn"],
+          d: { vi: "Nhận dạng dâu tây giả (NCKH 2023).",
+               en: "Fake strawberry detection (2023 research)." } },
+        { id: "gql", area: "sub", b: "micro", tier: 1, score: 60, icon: "dv:graphql:plain", name: "GraphQL · Kong", parents: [],
+          d: { vi: "Service NestJS + GraphQL sau gateway Kong (Appota).",
+               en: "NestJS + GraphQL services behind a Kong gateway (Appota)." } },
+        { id: "debezium", area: "sub", b: "micro", tier: 2, score: 58, icon: "fa-solid fa-arrows-rotate", name: "Debezium CDC", parents: ["gql"],
+          d: { vi: "Bắt thay đổi dữ liệu từ PostgreSQL và Open Cloud rồi đẩy vào Kafka.",
+               en: "Captures changes from PostgreSQL and Open Cloud into Kafka." } },
+        { id: "evsrc", area: "sub", b: "micro", tier: 3, score: 56, icon: "fa-solid fa-clock-rotate-left", name: "Event Sourcing", parents: ["debezium"],
+          d: { vi: "Lưu vết sự kiện xử lý tệp bằng EventStoreDB và Kafka, replay để dựng lại tiến trình (sau gộp hẳn vào Kafka).",
+               en: "Recorded file-processing events in EventStoreDB and Kafka, replayed to rebuild runs (later consolidated on Kafka)." } },
+        { id: "html", area: "sub", b: "web", tier: 1, score: 78, icon: "dv:html5", name: "HTML · CSS · Bootstrap", parents: [],
+          d: { vi: "Nền tảng web từ những dự án freelance đầu tiên.",
+               en: "Web basics from the first freelance projects." } },
+        { id: "express", area: "sub", b: "web", tier: 2, score: 74, icon: "dv:express!", name: "Express · Redux", parents: ["html"],
+          d: { vi: "API Express và state Redux Toolkit (IKAME, VSEC).",
+               en: "Express APIs and Redux Toolkit state (IKAME, VSEC)." } },
+        { id: "next", area: "sub", b: "web", tier: 3, score: 68, icon: "dv:nextjs!", name: "Next.js · IFC.js", parents: ["express"],
+          d: { vi: "BIM-hub: Next.js cùng IFC.js đọc mô hình IFC đa luồng.",
+               en: "BIM-hub: Next.js with IFC.js reading IFC models across threads." } }
+      );
+      const TN = Object.fromEntries(TREE.map((n) => [n.id, n]));
+      const nodeName = (n) => (typeof n.name === "string" ? n.name : n.name[lang]);
+
+      // Inventory: [name, group, rarity L/E/R/C, icon, vi, en]. Rarity = how often I reach for it.
+      const RARITY = { L: "#ffc845", E: "#c56bff", R: "#4d8dff", C: "#8a9bc4" };
+      const STARS = { L: 4, E: 3, R: 2, C: 1 };
+      const INV_GROUPS = ["frontend", "viz", "backend", "ai", "data", "native", "devops", "tooling", "cloud", "iot"];
+      const ITEMS = [
+        ["React", "frontend", "L", "dv:react", "Nền của mọi màn hình trong CDE.", "The base of every screen in the CDE."],
+        ["TypeScript", "frontend", "L", "dv:typescript", "Kiểu dữ liệu chặt cho cả FE và BE.", "Strict types across front and back end."],
+        ["Vite", "frontend", "E", "dv:vitejs", "Build FE, tách chunk cho Cesium và Draco.", "Builds the FE, with manual chunks for Cesium and Draco."],
+        ["Ant Design", "frontend", "E", "dv:antdesign", "Bộ component chính (v6) cho bảng, form, cây.", "Main component kit (v6) for tables, forms, trees."],
+        ["Tailwind CSS", "frontend", "E", "dv:tailwindcss", "Tinh chỉnh layout nhanh bên cạnh Ant Design.", "Quick layout tweaks next to Ant Design."],
+        ["Zustand", "frontend", "R", "fa-solid fa-box-archive", "Store toàn cục, chọn theo từng trường.", "Global stores with field-level selectors."],
+        ["TanStack Query", "frontend", "R", "fa-solid fa-rotate", "Cache và đồng bộ dữ liệu từ API.", "Caches and syncs API data."],
+        ["React Hook Form", "frontend", "R", "fa-solid fa-list-check", "Form nhiều bước có kiểm tra bằng Yup.", "Multi-step forms validated with Yup."],
+        ["React Flow", "frontend", "R", "fa-solid fa-diagram-project", "Dựng sơ đồ luồng phê duyệt.", "Builds approval flow diagrams."],
+        ["i18next", "frontend", "C", "fa-solid fa-language", "Đa ngôn ngữ cho giao diện.", "Translations for the UI."],
+        ["Slate", "frontend", "C", "fa-solid fa-pen-nib", "Trình soạn thảo văn bản giàu định dạng.", "Rich-text editor."],
+        ["Konva", "frontend", "C", "fa-solid fa-shapes", "Vẽ chú thích lên ảnh và bản vẽ.", "Draws markup over images and sheets."],
+        ["Chart.js", "frontend", "C", "fa-solid fa-chart-line", "Biểu đồ cho báo cáo thi công.", "Charts for site reports."],
+
+        ["Three.js", "viz", "L", "dv:threejs!", "Lõi của viewer 3D BIM.", "Core of the 3D BIM viewer."],
+        ["CesiumJS", "viz", "L", "fa-solid fa-earth-asia", "Bản đồ GIS 3D trên địa cầu.", "3D GIS on a globe."],
+        ["3D Tiles", "viz", "L", "fa-solid fa-cubes", "Định dạng stream cho mô hình rất lớn.", "Streaming format for huge models."],
+        ["three-mesh-bvh", "viz", "E", "fa-solid fa-sitemap", "Chọn và cắt đối tượng nhanh trên mesh lớn.", "Fast picking and clipping on large meshes."],
+        ["glTF-Transform", "viz", "E", "fa-solid fa-wand-magic-sparkles", "Tối ưu và nén glTF phía server.", "Optimises and compresses glTF on the server."],
+        ["ODA Visualize.js", "viz", "E", "fa-solid fa-compass-drafting", "Xem bản vẽ DWG trực tiếp trên web.", "Views DWG drawings right in the browser."],
+        ["IFC", "viz", "E", "fa-solid fa-building", "Chuẩn mô hình BIM được chuyển sang 3D Tiles.", "The BIM model standard converted into 3D Tiles."],
+        ["Resium", "viz", "R", "fa-solid fa-map-location-dot", "Dùng Cesium theo kiểu component React.", "Cesium as React components."],
+        ["loaders.gl", "viz", "R", "fa-solid fa-download", "Đọc tileset và dữ liệu địa không gian.", "Loads tilesets and geospatial data."],
+        ["Draco", "viz", "R", "fa-solid fa-compress", "Nén hình học để tải mô hình nhanh hơn.", "Geometry compression for faster loads."],
+        ["KMZ", "viz", "C", "fa-solid fa-map", "Xuất bản đồ sang Google Earth.", "Map export to Google Earth."],
+
+        ["Node.js", "backend", "L", "dv:nodejs", "Runtime cho mọi service phía sau.", "Runtime for every backend service."],
+        ["NestJS", "backend", "L", "dv:nestjs", "Khung chính của API và các service.", "Main framework for the API and services."],
+        ["BullMQ", "backend", "E", "fa-solid fa-layer-group", "Hàng đợi job chuyển đổi và xử lý nền.", "Queues for conversion and background jobs."],
+        ["Socket.IO", "backend", "E", "dv:socketio!", "Đẩy tiến độ và thông báo realtime.", "Pushes progress and realtime notifications."],
+        ["CQRS", "backend", "E", "fa-solid fa-code-branch", "Tách command và query cho kho tệp lớn.", "Splits commands and queries for large-file storage."],
+        ["Mongoose", "backend", "R", "fa-solid fa-leaf", "Schema và truy vấn MongoDB.", "Schemas and queries for MongoDB."],
+        ["KafkaJS", "backend", "R", "dv:apachekafka!", "Gửi sự kiện giữa các service.", "Sends events between services."],
+        ["Passport · JWT", "backend", "R", "fa-solid fa-key", "Xác thực và phiên đăng nhập.", "Authentication and sessions."],
+        ["Swagger", "backend", "C", "dv:swagger", "Tài liệu API tự sinh.", "Generated API docs."],
+        ["Winston", "backend", "C", "fa-solid fa-scroll", "Ghi log có cấu trúc.", "Structured logging."],
+        ["Joi", "backend", "C", "fa-solid fa-check-double", "Kiểm tra biến môi trường khi khởi động.", "Validates env vars at startup."],
+        ["Sharp", "backend", "C", "fa-solid fa-image", "Xử lý ảnh và thumbnail.", "Image processing and thumbnails."],
+        ["pdf-lib", "backend", "C", "fa-solid fa-file-pdf", "Tạo và ký số PDF.", "Builds and stamps PDFs."],
+
+        ["LangGraph", "ai", "L", "fa-solid fa-circle-nodes", "Agent có trạng thái, dừng chờ xác nhận.", "Stateful agents that pause for confirmation."],
+        ["LangChain", "ai", "L", "fa-solid fa-link", "Lớp chung cho nhiều mô hình LLM.", "Common layer over many LLMs."],
+        ["MCP", "ai", "L", "fa-solid fa-plug", "Giao thức công cụ cho trợ lý CDE.", "Tool protocol for the CDE assistant."],
+        ["RAG", "ai", "E", "fa-solid fa-magnifying-glass", "Trả lời dựa trên tài liệu dự án.", "Answers grounded in project documents."],
+        ["Gemini", "ai", "E", "fa-solid fa-gem", "Mô hình chạy trợ lý thao tác 3D.", "Model behind the 3D-viewer assistant."],
+        ["Claude", "ai", "E", "fa-solid fa-asterisk", "Mô hình cho agent và review code.", "Model for agents and code review."],
+        ["OpenAI", "ai", "R", "fa-solid fa-brain", "Nhà cung cấp LLM dự phòng.", "Alternate LLM provider."],
+        ["Ollama", "ai", "R", "fa-solid fa-server", "Chạy LLM và embedding tại chỗ.", "Runs LLMs and embeddings locally."],
+        ["pgvector", "ai", "R", "fa-solid fa-vector-square", "Lưu vector embedding cho tìm kiếm.", "Stores embeddings for search."],
+        ["LangSmith", "ai", "C", "fa-solid fa-chart-simple", "Theo dõi và gỡ lỗi chuỗi gọi agent.", "Traces and debugs agent runs."],
+
+        ["MongoDB", "data", "L", "dv:mongodb", "CSDL chính của nền tảng.", "The platform's primary database."],
+        ["Redis", "data", "L", "dv:redis", "Cache, khoá và hàng đợi.", "Cache, locks and queues."],
+        ["Elasticsearch", "data", "E", "dv:elasticsearch", "Tìm kiếm toàn văn và chỉ mục 3D.", "Full-text search and the 3D index."],
+        ["MinIO", "data", "E", "fa-solid fa-bucket", "Kho đối tượng cho tệp lớn.", "Object storage for large files."],
+        ["SVN · LFS", "data", "E", "dv:subversion", "Quản lý phiên bản tệp dự án.", "Version control for project files."],
+        ["PostgreSQL", "data", "R", "dv:postgresql", "Lưu vector cho analyzer.", "Vector store for the analyzer."],
+
+        ["C++14", "native", "L", "dv:cplusplus", "Runner chuyển đổi DWG/RVT/IFC.", "Conversion runners for DWG/RVT/IFC."],
+        ["ODA SDK", "native", "E", "fa-solid fa-ruler-combined", "Đọc bản vẽ và mô hình CAD/BIM.", "Reads CAD/BIM drawings and models."],
+        ["CMake", "native", "R", "dv:cmake", "Build các runner native.", "Builds the native runners."],
+        ["Bun", "native", "R", "dv:bun", "CLI hook kéo tệp LFS.", "CLI hook that pulls LFS files."],
+        ["FBX SDK", "native", "C", "fa-solid fa-person-running", "Chuyển đổi mô hình FBX.", "Converts FBX models."],
+
+        ["Docker", "devops", "L", "dv:docker", "Đóng gói và chạy mọi service.", "Packages and runs every service."],
+        ["GitLab CI/CD", "devops", "L", "dv:gitlab", "Pipeline test, build, deploy.", "Test, build and deploy pipelines."],
+        ["Kubernetes", "devops", "E", "dv:kubernetes", "Cluster chạy runner chuyển đổi.", "Cluster for the conversion runners."],
+        ["Nginx", "devops", "E", "dv:nginx", "Reverse proxy và phục vụ FE.", "Reverse proxy and FE hosting."],
+        ["Kustomize", "devops", "R", "fa-solid fa-sliders", "Cấu hình K8s theo môi trường.", "Per-environment K8s config."],
+        ["Docker Compose", "devops", "R", "fa-solid fa-boxes-stacked", "Dựng môi trường dev và staging.", "Spins up dev and staging stacks."],
+        ["Keycloak", "devops", "R", "fa-solid fa-shield-halved", "Đăng nhập một lần (SSO).", "Single sign-on."],
+        ["ELK Stack", "devops", "R", "dv:kibana", "Gom và tra cứu log.", "Collects and searches logs."],
+        ["Elastic APM", "devops", "C", "fa-solid fa-gauge-high", "Đo hiệu năng request.", "Traces request performance."],
+
+        ["Jest", "tooling", "L", "dv:jest:plain", "Test đơn vị và e2e cho NestJS.", "Unit and e2e tests for NestJS."],
+        ["Playwright", "tooling", "L", "dv:playwright", "Chấm điểm trợ lý trên trình duyệt thật.", "Scores the assistant in a real browser."],
+        ["Claude Code", "tooling", "E", "fa-solid fa-terminal", "Trợ lý code trong terminal.", "Coding agent in the terminal."],
+        ["Vitest", "tooling", "R", "dv:vitest", "Test nhanh cho FE trên Vite.", "Fast FE tests on Vite."],
+        ["Testing Library", "tooling", "R", "fa-solid fa-vial", "Test component React.", "React component tests."],
+        ["ESLint", "tooling", "R", "dv:eslint", "Giữ code nhất quán.", "Keeps code consistent."],
+        ["Yarn", "tooling", "R", "dv:yarn", "Quản lý package cho mọi service.", "Package manager for every service."],
+        ["Supertest", "tooling", "C", "fa-solid fa-flask", "Test HTTP cho API.", "HTTP tests for the API."],
+        ["Prettier", "tooling", "C", "fa-solid fa-broom", "Định dạng code tự động.", "Automatic code formatting."],
+        ["Postman", "tooling", "R", "dv:postman", "Thử và viết tài liệu API.", "Tries out and documents APIs."],
+
+        // From the Baezeni timeline (old SVN history).
+        ["@adscivil/cesium-viewer", "viz", "E", "fa-solid fa-earth-americas", "Thư viện GIS tự đóng gói, phát hành nhiều phiên bản.", "In-house GIS library, shipped across several releases."],
+        ["LAS · Point cloud", "viz", "C", "fa-solid fa-braille", "Chuyển đổi đám mây điểm LAS.", "Converts LAS point clouds."],
+        ["Gantt · Timeline", "frontend", "R", "fa-solid fa-chart-gantt", "Tiến độ mô hình 4D đồng bộ với Gantt.", "4D model progress synced with the Gantt."],
+        ["jsPDF", "frontend", "R", "fa-solid fa-file-export", "Xuất báo cáo tiến độ ra PDF.", "Exports progress reports to PDF."],
+        ["Web Workers", "frontend", "C", "fa-solid fa-microchip", "Đẩy xử lý nặng ra luồng riêng.", "Moves heavy work off the main thread."],
+        ["Design Patterns", "frontend", "E", "fa-solid fa-chess-knight", "Command, Strategy, State cho gizmo và mặt cắt.", "Command, Strategy, State for the gizmo and section tools."],
+        ["Ports & Adapters", "backend", "R", "fa-solid fa-puzzle-piece", "Kiến trúc module open-design-api.", "Module architecture for open-design-api."],
+        ["OAuth · OIDC", "backend", "R", "fa-solid fa-user-shield", "Xác thực token cho Kafka qua Keycloak.", "Token auth for Kafka through Keycloak."],
+        ["EventStoreDB", "data", "C", "fa-solid fa-clock-rotate-left", "Lưu vết sự kiện, replay tiến trình.", "Event log with replayable runs."],
+        ["ODA Open Cloud", "native", "E", "fa-solid fa-cloud", "Server chuyển đổi và stream mô hình CAD/BIM.", "Server that converts and streams CAD/BIM models."],
+        ["ONLYOFFICE", "tooling", "R", "fa-solid fa-file-word", "Document server có chú thích vẽ tay cho Word/PDF.", "Document server with freehand markup for Word/PDF."],
+
+        // From earlier jobs, research and study (CV).
+        ["Next.js", "frontend", "E", "dv:nextjs!", "Frontend của BIM-hub.", "The BIM-hub frontend."],
+        ["Redux Toolkit", "frontend", "R", "dv:redux", "Quản lý state ở dự án IKAME.", "State management on the IKAME project."],
+        ["HTML · CSS", "frontend", "R", "dv:html5", "Nền tảng của mọi trang web.", "The base of every web page."],
+        ["Bootstrap", "frontend", "C", "dv:bootstrap", "Dựng nhanh giao diện freelance.", "Quick UI for freelance sites."],
+        ["Fluent UI", "frontend", "C", "fa-solid fa-palette", "Bộ component cho BIM-hub.", "Component kit for BIM-hub."],
+        ["IFC.js", "viz", "R", "fa-solid fa-cubes-stacked", "Đọc mô hình IFC đa luồng trong BIM-hub.", "Multi-threaded IFC reading in BIM-hub."],
+        ["Express", "backend", "R", "dv:express!", "API REST ở IKAME và VSEC.", "REST APIs at IKAME and VSEC."],
+        ["GraphQL", "backend", "R", "dv:graphql:plain", "API GraphQL cho service ở Appota.", "GraphQL APIs for services at Appota."],
+        ["Kong", "backend", "C", "fa-solid fa-door-open", "API gateway trước các microservice.", "API gateway in front of microservices."],
+        ["Nodemailer", "backend", "C", "fa-solid fa-envelope", "Email báo kết quả xử lý 3D.", "Emails on 3D job results."],
+        ["PM2", "devops", "C", "fa-solid fa-gears", "Giữ app Node chạy trên VPS.", "Keeps Node apps running on a VPS."],
+        ["Debezium", "data", "R", "fa-solid fa-arrows-rotate", "Change Data Capture vào Kafka.", "Change Data Capture into Kafka."],
+        ["MySQL", "data", "C", "dv:mysql", "CSDL quan hệ cho dự án freelance.", "Relational DB for freelance work."],
+        ["IndexedDB", "data", "C", "fa-solid fa-box", "Cache mô hình phía trình duyệt.", "Browser-side model cache."],
+        ["Git · GitHub", "devops", "E", "dv:git", "Quản lý mã nguồn hằng ngày.", "Daily source control."],
+        ["Linux · Ubuntu", "devops", "R", "dv:ubuntu", "Môi trường dev và server.", "Dev and server environment."],
+        ["Apache", "devops", "C", "dv:apache", "Phục vụ SVN và tệp lớn.", "Serves SVN and large files."],
+        ["YOLOv8", "ai", "R", "fa-solid fa-eye", "Nhận dạng vật thể (NCKH 2023).", "Object detection (2023 research)."],
+        ["Neural nets", "ai", "C", "fa-solid fa-brain", "Nhận biết biểu cảm khuôn mặt.", "Facial expression recognition."],
+        ["AWS", "cloud", "E", "fa-brands fa-aws", "Hạ tầng cloud cho đề tài và hackathon.", "Cloud infra for research and hackathons."],
+        ["Lambda", "cloud", "R", "fa-solid fa-bolt", "Hàm serverless.", "Serverless functions."],
+        ["API Gateway", "cloud", "R", "fa-solid fa-door-closed", "Cổng API cho Lambda.", "API front door for Lambda."],
+        ["S3", "cloud", "R", "fa-solid fa-bucket", "Lưu dữ liệu và mô hình.", "Stores data and models."],
+        ["EC2", "cloud", "C", "fa-solid fa-server", "Máy chủ ảo.", "Virtual servers."],
+        ["SageMaker", "cloud", "C", "fa-solid fa-flask", "Triển khai mô hình học máy.", "Hosts ML models."],
+        ["C/C++", "iot", "E", "dv:cplusplus", "Lập trình vi điều khiển.", "Microcontroller programming."],
+        ["Arduino", "iot", "R", "dv:arduino", "Mạch demo cho đề tài RFID.", "Demo board for the RFID project."],
+        ["RFID RC522", "iot", "C", "fa-solid fa-id-card", "Module đọc thẻ RFID.", "RFID reader module."],
+      ];
+      const CAMPAIGN = { commits: "2.3K+", since: "02/2024" };
+
+      // Main quests. Commit counts = my non-merge commits per area (conventional-commit scopes).
+      const QUESTS = [
+        { icon: "fa-solid fa-cube", diff: 5, status: "done", commits: 572,
+          title: { vi: "Viewer 3D BIM", en: "3D BIM viewer" },
+          brief: { vi: "Mở mô hình công trình (IFC, DWG, RVT) ngay trên trình duyệt để xoay, cắt, đo và tìm va chạm, không cần cài phần mềm CAD.",
+                   en: "Open building models (IFC, DWG, RVT) right in the browser to orbit, cut, measure and find clashes, no CAD software needed." },
+          obj: { vi: ["Mặt cắt X/Y, cắt theo đường, cắt 2 điểm, hộp cắt có manipulator và trục WCS", "Chọn vùng, chọn tương tự, bắt điểm, cây đối tượng, cụm lắp ghép, góc nhìn đã lưu", "Kiểm tra va chạm giữa các mô hình, xuất báo cáo", "Chuyển từ ODA VisualizeJS sang Three.js + 3D Tiles, tải từng phần để mô hình lớn vẫn mượt"],
+                 en: ["X/Y section planes, path cuts, two-point cuts, a section box with manipulator and WCS axes", "Box select, select similar, snapping, object tree, assemblies, saved viewpoints", "Clash checks between models with exportable reports", "Moved from ODA VisualizeJS to Three.js + 3D Tiles, partial loading keeps big models smooth"] },
+          skills: ["ODA Visualize.js", "Three.js", "three-mesh-bvh", "React", "TypeScript"],
+          reward: { vi: "Kỹ sư xem và soát mô hình lớn ngay trên web.", en: "Engineers review large models straight from the web." } },
+        { icon: "fa-solid fa-earth-asia", diff: 4, status: "done", commits: 267,
+          title: { vi: "Bản đồ GIS 3D", en: "3D GIS map" },
+          brief: { vi: "Đặt mô hình công trình lên bản đồ 3D thật để xem tuyến, địa hình và hiện trường thay đổi theo thời gian.",
+                   en: "Place project models on a real 3D map to see the route, the terrain and the site change over time." },
+          obj: { vi: ["Đóng gói viewer thành thư viện riêng @adscivil/cesium-viewer, phát hành nhiều phiên bản", "Địa hình, lớp bản đồ, mô hình 3D Tiles đặt đúng toạ độ; microservice gltf-transform tối ưu glTF", "Tuyến, trắc dọc, mặt cắt dưới đất, ảnh 360° theo thời gian, chú thích và đo đạc", "Xuất KMZ sang Google Earth, chia sẻ bản đồ stream mô hình từ MinIO"],
+                 en: ["Packaged the viewer as its own library, @adscivil/cesium-viewer, across several releases", "Terrain, map layers, 3D Tiles at real coordinates; a gltf-transform microservice to optimise glTF", "Alignments, long profiles, subsurface cuts, time-stamped 360° photos, markup and measuring", "KMZ export to Google Earth, shared maps streaming models from MinIO"] },
+          skills: ["CesiumJS", "Resium", "3D Tiles", "glTF-Transform", "MinIO", "KMZ"],
+          reward: { vi: "Cả công trình tuyến dài nằm gọn trên một bản đồ.", en: "A whole linear project fits on one map." } },
+        { icon: "fa-solid fa-robot", diff: 5, status: "active", commits: 225,
+          title: { vi: "Trợ lý AI của CDE", en: "CDE AI assistant" },
+          brief: { vi: "Trợ lý chat hiểu dữ liệu dự án: trả lời từ tài liệu, tạo và sửa issue, điều khiển viewer 3D bằng câu nói bình thường.",
+                   en: "A chat assistant that knows the project: answers from documents, creates and edits issues, drives the 3D viewer from plain sentences." },
+          obj: { vi: ["RAG trên tài liệu và chỉ mục đối tượng 3D", "Agent dừng lại chờ người dùng xác nhận trước khi ghi", "Công cụ MCP: đo, cắt, cô lập, lưu góc nhìn trong viewer", "Bộ câu chuẩn chấm điểm tự động trên trình duyệt thật"],
+                 en: ["RAG over documents and a 3D object index", "Agent pauses for user confirmation before any write", "MCP tools to measure, cut, isolate and save views in the viewer", "Benchmark suite auto-scored in a real browser"] },
+          skills: ["LangGraph", "LangChain", "MCP", "Gemini", "Elasticsearch", "Playwright"],
+          reward: { vi: "Người dùng chỉ cần hỏi, trợ lý thao tác thay trên dự án và mô hình.", en: "Users just ask; the assistant does the work on the project and the model." } },
+        { icon: "fa-solid fa-hard-drive", diff: 4, status: "done", commits: 257,
+          title: { vi: "Kho tệp lớn (LFS)", en: "Large file storage (LFS)" },
+          brief: { vi: "Lưu và tải bản vẽ, mô hình rất nặng mà kho SVN không bị phình to.",
+                   en: "Store and fetch very heavy drawings and models without bloating the SVN repository." },
+          obj: { vi: ["Tệp lớn lên MinIO, SVN chỉ giữ tệp con trỏ nhỏ", "Tách luồng ghi và đọc (CQRS), hàng đợi upload bằng BullMQ", "Hook CLI tự kéo tệp thật khi checkout/update", "Sao chép, di chuyển, chia sẻ công khai vẫn trỏ đúng tệp"],
+                 en: ["Big files go to MinIO, SVN keeps a tiny pointer file", "Separate write and read paths (CQRS), BullMQ upload queues", "CLI hook pulls the real file on checkout/update", "Copy, move and public sharing still resolve the right file"] },
+          skills: ["NestJS", "MinIO", "SVN · LFS", "CQRS", "BullMQ", "Bun"],
+          reward: { vi: "Kho dự án gọn nhẹ dù chứa tệp rất lớn.", en: "Project repos stay lean even with huge files." } },
+        { icon: "fa-solid fa-gears", diff: 5, status: "done", commits: 166,
+          title: { vi: "Pipeline chuyển đổi 3D", en: "3D conversion pipeline" },
+          brief: { vi: "Tự động biến tệp CAD/BIM gốc thành định dạng web xem được mỗi khi có tệp mới tải lên.",
+                   en: "Automatically turn raw CAD/BIM files into a web-viewable format whenever a new file is uploaded." },
+          obj: { vi: ["Dựng ODA Open Cloud Server và server ODA riêng cho từng công ty", "Kafka có OAuth qua Keycloak, connector CDC, Event Sourcing để theo dõi và chạy lại tiến trình", "Runner C++ dùng ODA SDK chuyển DWG/RVT/IFC sang 3D Tiles, chạy runner-api trên Kubernetes", "Báo trạng thái tệp realtime qua WebSocket, gửi email khi xong"],
+                 en: ["Set up ODA Open Cloud Server and a dedicated ODA server per company", "Kafka with OAuth through Keycloak, CDC connectors and Event Sourcing to track and replay runs", "C++ runners on the ODA SDK convert DWG/RVT/IFC into 3D Tiles, runner-api on Kubernetes", "Realtime file status over WebSockets, email when done"] },
+          skills: ["C++14", "ODA SDK", "KafkaJS", "Keycloak", "Debezium", "Kubernetes", "Docker"],
+          reward: { vi: "Tải tệp lên là có mô hình 3D để xem.", en: "Upload a file, get a 3D model to view." } },
+        { icon: "fa-solid fa-file-signature", diff: 3, status: "done", commits: 312,
+          title: { vi: "Nghiệp vụ dự án", en: "Project workflows" },
+          brief: { vi: "Các luồng việc hằng ngày của ban quản lý dự án: trình duyệt hồ sơ, báo cáo hiện trường, phân quyền.",
+                   en: "Day-to-day flows for project teams: document approvals, site reports, permissions." },
+          obj: { vi: ["Tiến độ mô hình 4D: mã BIM, tự liên kết mô hình với công việc, timeline đồng bộ Gantt", "Báo cáo thi công theo CQRS: tô màu tiến độ trên mô hình 3D, thông báo, xuất PDF", "Luồng phê duyệt nhiều bước, phân quyền, quy tắc đặt tên, chia sẻ công khai", "Chú thích vẽ tay cho Word/PDF trên document server, bộ hướng dẫn sử dụng"],
+                 en: ["4D model progress: BIM codes, auto-linking models to tasks, a timeline synced with the Gantt", "Site reports on CQRS: progress colour-coded on the 3D model, notifications, PDF export", "Multi-step approvals, permissions, naming rules, public sharing", "Freehand markup for Word/PDF on the document server, plus the user guide"] },
+          skills: ["React", "Ant Design", "Tailwind CSS", "React Flow", "NestJS", "MongoDB", "CQRS"],
+          reward: { vi: "Hồ sơ dự án đi đúng quy trình và tra cứu được.", en: "Project paperwork follows the process and stays traceable." } },
+      ];
+
+      // Work experience from my CV, newest first. end: null = present.
+      const JOBS = [
+        { short: "Baezeni", icon: "fa-solid fa-cube", status: "active", start: "05/2023", end: null,
+          role: "Full Stack Developer", company: { vi: "Công ty TNHH Phần mềm Baezeni", en: "Baezeni Software Co., Ltd." },
+          project: "BIM-hub · CDE (ADSCivil)",
+          brief: { vi: "Xây nền tảng quản lý dữ liệu xây dựng: BIM-hub đọc và hiển thị tệp IFC, rồi CDE làm môi trường dữ liệu chung cho cả dự án, từ viewer 3D, bản đồ GIS, tiến độ thi công đến trợ lý AI.",
+                   en: "Building construction data platforms: BIM-hub to read and show IFC files, then the CDE as a shared data environment for whole projects, from the 3D viewer and GIS map to site progress and an AI assistant." },
+          obj: { vi: ["Web 3D Viewer trên ODA VisualizeJS rồi Three.js: mặt cắt, hộp cắt có manipulator, chọn vùng, xem từng phần",
+                      "Bản đồ GIS trên Cesium, đóng gói thành thư viện @adscivil/cesium-viewer",
+                      "Backend NestJS: REST + WebSocket, BullMQ, Kafka (OAuth Keycloak, CDC), CQRS, Ports & Adapters",
+                      "Tiến độ mô hình 4D và báo cáo thi công gắn trực tiếp với mô hình 3D",
+                      "Vận hành ODA Open Cloud, Kafka, document server trên Docker; trợ lý AI cho CDE"],
+                 en: ["Web 3D viewer on ODA VisualizeJS, later Three.js: section planes, section box with manipulator, box select, partial viewing",
+                      "GIS map on Cesium, packaged as the @adscivil/cesium-viewer library",
+                      "NestJS backend: REST + WebSockets, BullMQ, Kafka (Keycloak OAuth, CDC), CQRS, Ports & Adapters",
+                      "4D model progress and site reports tied directly to the 3D model",
+                      "Ran ODA Open Cloud, Kafka and the document server on Docker; built the CDE AI assistant"] },
+          phases: [
+            { when: "2023", title: "BIM-hub",
+              d: { vi: "Đọc/ghi IFC nhanh hơn với IFC.js đa luồng, cache Redis + IndexedDB, giao diện Next.js.",
+                   en: "Faster IFC read/write with multi-threaded IFC.js, Redis + IndexedDB cache, Next.js UI." } },
+            { when: "02–06/2024", title: { vi: "Khởi động CDE", en: "CDE kick-off" },
+              d: { vi: "Tích hợp Open Design API và Web Viewer đầu tiên; giao diện nhóm quyền, quy trình phê duyệt, quy tắc đặt tên, issue.",
+                   en: "First Open Design API and Web Viewer integration; UI for permission groups, approval flows, naming rules, issues." } },
+            { when: "04–07/2025", title: { vi: "Hạ tầng sự kiện", en: "Event infrastructure" },
+              d: { vi: "Dựng ODA Open Cloud Server, Kafka có OAuth qua Keycloak, connector CDC, EventStoreDB; trạng thái tệp realtime qua WebSocket.",
+                   en: "Set up ODA Open Cloud Server, Kafka with Keycloak OAuth, CDC connectors, EventStoreDB; realtime file status over WebSockets." } },
+            { when: "07–10/2025", title: { vi: "Viewer VisualizeJS", en: "VisualizeJS viewer" },
+              d: { vi: "Mặt cắt X/Y, cắt theo đường, cắt 2 điểm, hộp cắt có manipulator và WCS; chọn tương tự, bắt điểm; cài đặt OBJ, đơn vị mô hình, điểm tham chiếu.",
+                   en: "X/Y section planes, path and two-point cuts, a section box with manipulator and WCS; select similar, snapping; OBJ settings, model units, reference points." } },
+            { when: "10/2025–02/2026", title: { vi: "GIS trên Cesium", en: "GIS on Cesium" },
+              d: { vi: "Thư viện @adscivil/cesium-viewer (v1.2 → v1.4) với đo đạc, chú thích, cây đối tượng, menu chuột phải; microservice gltf-transform sinh 3D Tiles; chia sẻ GIS stream từ MinIO.",
+                   en: "The @adscivil/cesium-viewer library (v1.2 → v1.4) with measuring, markup, object tree, context menu; a gltf-transform microservice producing 3D Tiles; GIS sharing streamed from MinIO." } },
+            { when: "02–03/2026", title: { vi: "Tiến độ 4D & báo cáo thi công", en: "4D progress & site reports" },
+              d: { vi: "Mã BIM, tự liên kết mô hình với công việc, marker thuộc tính có culling theo khung nhìn, timeline đồng bộ Gantt; báo cáo thi công theo CQRS, tô màu tiến độ 3D, xuất PDF.",
+                   en: "BIM codes, auto-linking models to tasks, property markers with viewport culling, a timeline synced with the Gantt; site reports on CQRS, 3D progress colouring, PDF export." } },
+            { when: { vi: "04/2026 → nay", en: "04/2026 → now" }, title: { vi: "Kiến trúc lại & trợ lý AI", en: "Re-architecture & AI assistant" }, now: true,
+              d: { vi: "Chuyển từ SVN sang git, LFS qua MinIO, pipeline 3D Tiles bằng runner C++, document server có chú thích vẽ tay, trợ lý AI LangGraph + MCP.",
+                   en: "Moved from SVN to git, LFS on MinIO, a C++ 3D Tiles pipeline, a document server with freehand markup, a LangGraph + MCP AI assistant." } },
+          ],
+          skills: ["React", "Next.js", "NestJS", "ODA Visualize.js", "CesiumJS", "KafkaJS", "Keycloak", "BullMQ", "MinIO", "Docker"],
+          reward: { vi: "Chương hiện tại, ~2.3K commit kể cả lịch sử SVN cũ. Chi tiết từng phần nằm ở khung Nhiệm vụ chính bên dưới.",
+                    en: "The current chapter, ~2.3K commits including the old SVN history. Each part is broken down in Main Quests below." } },
+        { short: "VSEC", icon: "fa-solid fa-shield-halved", status: "done", start: "01/2023", end: "05/2023",
+          role: "Backend Developer", company: { vi: "Công ty CP An ninh mạng Việt Nam (VSEC)", en: "Vietnam Cyber Security JSC (VSEC)" },
+          project: "Jobfair",
+          brief: { vi: "Hệ thống tổ chức thi tuyển và kiểm tra năng lực nhân sự trong công ty.",
+                   en: "A system for running recruitment exams and skill tests inside the company." },
+          obj: { vi: ["Dựng lại luồng nghiệp vụ, cải tiến và thêm chức năng trên mã ExpressJS có sẵn",
+                      "Chuyển mã nguồn từ ExpressJS sang NestJS",
+                      "Chuyển CSDL từ MongoDB sang PostgreSQL, thiết kế lại theo mô hình quan hệ",
+                      "Viết lại tài liệu API bằng Postman, deploy lên VPS Ubuntu với PM2 và Nginx"],
+                 en: ["Reworked the flows, improved and extended features on the existing ExpressJS code",
+                      "Migrated the codebase from ExpressJS to NestJS",
+                      "Moved the database from MongoDB to PostgreSQL with a relational redesign",
+                      "Rewrote the API docs in Postman, deployed to an Ubuntu VPS with PM2 and Nginx"] },
+          skills: ["NestJS", "Express", "PostgreSQL", "MongoDB", "Postman", "Nginx"],
+          reward: { vi: "Hệ thống chạy trên NestJS + PostgreSQL, có tài liệu API rõ ràng.",
+                    en: "The system runs on NestJS + PostgreSQL with clear API docs." } },
+        { short: "IKAME", icon: "fa-solid fa-lightbulb", status: "done", start: "10/2022", end: "01/2023",
+          role: "Full Stack Developer", company: { vi: "Công ty CP IKAME Global", en: "IKAME Global JSC" },
+          project: { vi: "Blog ý tưởng nội bộ", en: "Internal ideas blog" },
+          brief: { vi: "Website nội bộ để nhân viên đăng ý tưởng, tin tức và chia sẻ theo nhiều chủ đề.",
+                   en: "An internal site where staff post ideas and news and share them across topics." },
+          obj: { vi: ["Quản lý dự án",
+                      "Xây core API theo chuẩn RESTful bằng Node.js/Express",
+                      "Phát triển frontend React TypeScript với Redux Toolkit và Vite",
+                      "Cài đặt và triển khai web server bằng Nginx và Docker"],
+                 en: ["Managed the project",
+                      "Built the core RESTful API with Node.js/Express",
+                      "Developed the React TypeScript frontend with Redux Toolkit and Vite",
+                      "Set up and deployed the web server with Nginx and Docker"] },
+          skills: ["Node.js", "Express", "React", "TypeScript", "Redux Toolkit", "Vite", "Docker", "Nginx"],
+          reward: { vi: "Tự dẫn một dự án từ API đến lúc chạy trên server.",
+                    en: "Led a project from the API all the way to a running server." } },
+        { short: "Appota", icon: "fa-solid fa-wallet", status: "done", start: "05/2022", end: "09/2022",
+          role: "Backend Developer Trainee", company: { vi: "Appota", en: "Appota" },
+          project: { vi: "Chainverse · ví điện tử blockchain", en: "Chainverse · blockchain wallet" },
+          brief: { vi: "Ví điện tử dùng crypto trên nền blockchain. Chương thực tập, lần đầu làm việc với hệ thống thật.",
+                   en: "A crypto wallet built on blockchain. The internship chapter and my first real production system." },
+          obj: { vi: ["Tìm hiểu kiến trúc microservice và message queue với Kafka",
+                      "Làm demo Change Data Capture: Debezium nối PostgreSQL, chạy trên Docker",
+                      "Tham gia xây service bằng NestJS và GraphQL sau gateway Kong",
+                      "Học nền tảng blockchain"],
+                 en: ["Learned microservice architecture and message queues with Kafka",
+                      "Built a Change Data Capture demo: Debezium on PostgreSQL, running in Docker",
+                      "Helped build services in NestJS and GraphQL behind a Kong gateway",
+                      "Picked up blockchain fundamentals"] },
+          skills: ["NestJS", "GraphQL", "KafkaJS", "Debezium", "PostgreSQL", "Docker", "Kong"],
+          reward: { vi: "Chứng nhận thực tập xuất sắc The NextGen Appota 2022.",
+                    en: "Outstanding intern certificate, The NextGen Appota 2022." } },
+        { short: "Freelance", icon: "fa-solid fa-briefcase", status: "active", start: "2021", end: null,
+          role: { vi: "Freelancer · quản lý dự án", en: "Freelancer · project lead" }, company: { vi: "Dự án tự do", en: "Freelance projects" },
+          project: { vi: "Nhiều khách hàng", en: "Various clients" },
+          brief: { vi: "Nhận làm website và công cụ cho cửa hàng, doanh nghiệp nhỏ và sinh viên.",
+                   en: "Websites and tools for shops, small businesses and students." },
+          obj: { vi: ["Website quảng cáo nhà hàng, website bán đồng hồ",
+                      "Hệ thống quản lý nhân sự và thông tin bất động sản",
+                      "Quản lý và đăng blog cho shop bán hàng",
+                      "Đồ án tốt nghiệp trọn gói: code và báo cáo"],
+                 en: ["A restaurant promo site and a watch store",
+                      "An HR and real-estate listing management system",
+                      "Blog management and publishing for an online shop",
+                      "End-to-end graduation projects: code and report"] },
+          skills: [],
+          reward: { vi: "Làm việc trực tiếp với khách hàng và yêu cầu thật từ sớm.",
+                    en: "Worked directly with real clients and real requirements early on." } },
+      ];
+
+      // Achievements from my CV. tier → medal colour.
+      const MEDAL = { gold: "#ffc845", silver: "#d3dcef", bronze: "#e0915a", final: "#c56bff", honor: "#c56bff", cert: "#4d8dff", act: "#4fd1c5" };
+      const ACH = [
+        { g: "award", tier: "gold", icon: "fa-solid fa-trophy", date: "07/2020", org: "Codelearn.io",
+          title: { vi: "Hạng nhất · Newbie Challenge kỳ 12", en: "1st place · Newbie Challenge #12" },
+          d: { vi: "Đứng đầu kỳ thi lập trình dành cho người mới.", en: "Top of a coding contest for newcomers." } },
+        { g: "award", tier: "silver", icon: "fa-solid fa-medal", date: "07/2021", org: { vi: "Khoa CNTT", en: "IT Faculty" },
+          title: { vi: "Giải nhì · Nghiên cứu khoa học cấp khoa", en: "2nd prize · Faculty research award" },
+          d: { vi: "Hệ thống kiểm soát xe ô tô bằng RFID (Arduino, RC522, C/C++).", en: "RFID car access control system (Arduino, RC522, C/C++)." } },
+        { g: "award", tier: "bronze", icon: "fa-solid fa-award", date: "12/2020", org: "Internet Day 2020",
+          title: { vi: "Khuyến khích · Internet Day 2020 Code Challenge", en: "Honorable mention · Internet Day 2020 Code Challenge" },
+          d: { vi: "Giải khuyến khích cuộc thi lập trình.", en: "Honorable mention in the coding challenge." } },
+        { g: "award", tier: "final", icon: "fa-solid fa-flag-checkered", date: "10/2021", org: { vi: "Sinh viên Thủy lợi", en: "Thuy Loi students" },
+          title: { vi: "Chung kết · Ý tưởng khởi nghiệp 2021", en: "Finalist · Student startup ideas 2021" },
+          d: { vi: "Vào chung kết với đề tài kiểm soát xe bằng RFID.", en: "Reached the final with the RFID car-control project." } },
+        { g: "award", tier: "honor", icon: "fa-solid fa-bolt", date: "04/2023", org: "Junction Vietnam · Viettel",
+          title: { vi: "JunctionX Hanoi 2023", en: "JunctionX Hanoi 2023" },
+          d: { vi: "Hackathon: app chăm sóc sức khoẻ tinh thần OHK, dựng kiến trúc AWS và hệ gợi ý.", en: "Hackathon: OHK mental-health app, AWS architecture and recommendations." } },
+
+        { g: "cert", tier: "cert", icon: "fa-solid fa-star", date: "07/2022", org: "Appota",
+          title: { vi: "The NextGen Appota 2022 · Thực tập xuất sắc", en: "The NextGen Appota 2022 · Outstanding intern" },
+          d: { vi: "Microservice, Kafka, Debezium CDC, NestJS + GraphQL.", en: "Microservices, Kafka, Debezium CDC, NestJS + GraphQL." } },
+        { g: "cert", tier: "cert", icon: "fa-brands fa-js", date: "2023", org: "HackerRank",
+          title: { vi: "JavaScript (Basic & Intermediate)", en: "JavaScript (Basic & Intermediate)" },
+          d: { vi: "Chứng chỉ kỹ năng JavaScript.", en: "JavaScript skills certificate." },
+          link: "https://www.hackerrank.com/certificates/cff50d7d2293" },
+        { g: "cert", tier: "cert", icon: "fa-solid fa-database", date: "2023", org: "HackerRank",
+          title: { vi: "SQL (Basic & Intermediate)", en: "SQL (Basic & Intermediate)" },
+          d: { vi: "Chứng chỉ kỹ năng SQL.", en: "SQL skills certificate." },
+          link: "https://www.hackerrank.com/certificates/b551fe3859d4" },
+
+        { g: "act", tier: "act", icon: "fa-solid fa-microscope", date: "2023", org: { vi: "NCKH khoa CNTT", en: "IT faculty research" },
+          title: { vi: "Nhận dạng dâu tây giả bằng YOLOv8", en: "Fake strawberry detection with YOLOv8" },
+          d: { vi: "Triển khai trên AWS: API Gateway, Lambda, SageMaker, S3.", en: "Deployed on AWS: API Gateway, Lambda, SageMaker, S3." } },
+        { g: "act", tier: "act", icon: "fa-solid fa-brain", date: "2022", org: { vi: "NCKH khoa CNTT", en: "IT faculty research" },
+          title: { vi: "Cảnh báo môi trường làm việc có hại", en: "Harmful workplace alert app" },
+          d: { vi: "Mạng nơ-ron nhận biết biểu cảm khuôn mặt theo thời gian.", en: "Neural network reading facial expressions over time." } },
+        { g: "act", tier: "act", icon: "fa-solid fa-users", date: "07/2022", org: { vi: "CLB Sinh viên 4.0", en: "Student 4.0 Club" },
+          title: { vi: "Phó chủ nhiệm · CTO", en: "Vice president · CTO" },
+          d: { vi: "Phụ trách mảng kỹ thuật của câu lạc bộ.", en: "Led the club's technical side." } },
+        { g: "act", tier: "act", icon: "fa-solid fa-laptop-code", date: "2019", org: { vi: "Cấp trường", en: "School level" },
+          title: { vi: "Olympic Tin học", en: "Informatics Olympiad" },
+          d: { vi: "Luyện và thi tuyển chọn đội tuyển đi thi cấp tỉnh.", en: "Trained and competed for the provincial team." } },
       ];
 
       // [rank, min score, color, width weight on the scale bar]
@@ -2138,6 +3866,422 @@
         }
       }
 
+      function renderCampaign() {
+        const stats = $("campStats");
+        stats.textContent = "";
+        const L = t("campStats");
+        [[CAMPAIGN.commits, L.commits], [CAMPAIGN.since, L.since], [t("campTop"), L.rank]].forEach(([v, k]) => {
+          const d = el("div", "campStat");
+          d.append(el("b", null, v), el("small", null, k));
+          stats.append(d);
+        });
+        renderQuests();
+        renderJourney();
+      }
+
+      const L10 = (v) => (typeof v === "string" ? v : v[lang]);
+      const qSel = {};
+
+      // Shared quest-log renderer: list on the left, detail panel on the right.
+      function renderQuestLog(cfg) {
+        const list = $(cfg.list);
+        list.textContent = "";
+        const sel = qSel[cfg.list] ?? 0;
+        cfg.data.forEach((q, i) => {
+          const b = el("button", "qItem");
+          b.type = "button";
+          b.setAttribute("aria-pressed", String(i === sel));
+          const ico = el("span", "qIco");
+          ico.append(el("i", q.icon));
+          const mid = el("span");
+          const meta = el("small");
+          meta.append(...cfg.meta(q));
+          mid.append(el("b", null, cfg.name(q)), meta);
+          b.append(ico, mid, el("span", "qStatus" + (q.status === "active" ? " active" : ""), t("qStatus")[q.status]));
+          b.addEventListener("click", () => {
+            qSel[cfg.list] = i;
+            list.querySelectorAll(".qItem").forEach((x, k) => x.setAttribute("aria-pressed", String(k === i)));
+            renderQuestPanel(cfg);
+          });
+          list.append(b);
+        });
+        renderQuestPanel(cfg);
+      }
+
+      function renderQuestPanel(cfg) {
+        const i = qSel[cfg.list] ?? 0;
+        const q = cfg.data[i];
+        const box = $(cfg.detail);
+        box.textContent = "";
+        const top = el("div", "qdTop");
+        top.append(el("span", "label", cfg.tag(q, i)), el("span", "qStatus" + (q.status === "active" ? " active" : ""), t("qStatus")[q.status]));
+        const head = el("div");
+        head.append(el("h3", null, L10(q.title)));
+        if (cfg.sub) head.append(cfg.sub(q));
+
+        const sec = (label, ...kids) => {
+          const d = el("div", "qSec");
+          d.append(el("span", "label", label), ...kids);
+          return d;
+        };
+        const objs = q.obj[lang];
+        const ul = el("ul", "qObj");
+        objs.forEach((o) => ul.append(el("li", null, o)));
+        const prog = el("div", "qProg");
+        prog.append(el("i"), document.createTextNode(t("qDone")(objs.length, objs.length)));
+
+        const parts = [top, head, el("p", "qBrief", L10(q.brief)), sec(cfg.objLabel || t("qObj"), ul, prog)];
+        if (q.phases) {
+          const ol = el("ol", "qPhases");
+          q.phases.forEach((ph) => {
+            const li = el("li", ph.now ? "now" : null);
+            li.append(el("span", "when", L10(ph.when)), el("b", null, L10(ph.title)), el("p", null, L10(ph.d)));
+            ol.append(li);
+          });
+          parts.push(sec(t("qPhases"), ol));
+        }
+        if (q.skills.length) {
+          const skills = el("div", "qSkills");
+          q.skills.forEach((name) => {
+            const it = ITEMS.find((x) => x[0] === name);
+            const c = el("span", "qSkill");
+            if (it) c.append(iconEl(it[3], "tGlyph"));
+            c.append(document.createTextNode(name));
+            skills.append(c);
+          });
+          parts.push(sec(t("qSkills"), skills));
+        }
+        const rw = el("div", "qReward");
+        const rt = el("div");
+        rt.append(el("b", null, cfg.rewardTag(q)), el("span", null, L10(q.reward)));
+        rw.append(el("i", "fa-solid fa-gem"), rt);
+        parts.push(rw);
+        box.append(...parts);
+      }
+
+      function renderQuests() {
+        renderQuestLog({
+          list: "qList", detail: "qDetail", data: QUESTS,
+          name: (q) => L10(q.title),
+          meta: (q) => [el("span", "qStars", "★".repeat(q.diff) + "☆".repeat(5 - q.diff)), document.createTextNode(" · " + t("qCommits")(q.commits))],
+          tag: (q, i) => t("qMain")(i + 1),
+          rewardTag: (q) => `${t("qReward").toUpperCase()} · +${t("qCommits")(q.commits)}`,
+        });
+      }
+
+      const period = (j) => `${j.start} – ${j.end || t("qPresent")}`;
+
+      function renderJourney() {
+        const stats = $("jStats");
+        stats.textContent = "";
+        const firstJob = JOBS.filter((j) => j.short !== "Freelance").at(-1);
+        const [m, y] = firstJob.start.split("/").map(Number);
+        const years = Math.floor((Date.now() - new Date(y, m - 1, 1)) / (365.25 * 86400000));
+        const L = t("jStats");
+        [[String(JOBS.length - 1), L.companies], [firstJob.start, L.first], [`${years}+`, L.years]].forEach(([v, k]) => {
+          const d = el("div", "campStat");
+          d.append(el("b", null, v), el("small", null, k));
+          stats.append(d);
+        });
+        JOBS.forEach((j) => (j.title = j.company));
+        renderQuestLog({
+          list: "jList", detail: "jDetail", data: JOBS,
+          name: (j) => j.short,
+          meta: (j) => [document.createTextNode(`${period(j)} · ${L10(j.role)}`)],
+          tag: (j, i) => t("jChapter")(JOBS.length - i, j.short),
+          sub: (j) => {
+            const d = el("div", "qSub");
+            d.append(el("b", null, L10(j.role)), document.createTextNode(` · ${period(j)} · ${t("jProject")}: ${L10(j.project)}`));
+            return d;
+          },
+          objLabel: t("jWork"),
+          rewardTag: () => t("qReward").toUpperCase(),
+        });
+      }
+
+      function renderAchievements() {
+        $("achCount").textContent = t("achCount")(ACH.length);
+        const medals = $("achMedals");
+        medals.textContent = "";
+        ["gold", "silver", "bronze"].forEach((k) => {
+          const sp = el("span", null, `${ACH.filter((a) => a.tier === k).length} ${t("achTier")[k]}`);
+          sp.style.setProperty("--mc", MEDAL[k]);
+          medals.append(sp);
+        });
+        const body = $("achBody");
+        body.textContent = "";
+        ["award", "cert", "act"].forEach((g) => {
+          const grp = el("div", "achGroup");
+          const grid = el("div", "achGrid");
+          ACH.filter((a) => a.g === g).forEach((a) => {
+            const card = el("div", "ach");
+            card.style.setProperty("--mc", MEDAL[a.tier]);
+            const m = el("span", "medal");
+            m.append(el("i", a.icon));
+            const txt = el("div");
+            txt.append(
+              el("span", "tier", t("achTier")[a.tier]),
+              el("b", null, L10(a.title)),
+              el("small", null, `${L10(a.org)} · ${a.date}`),
+              el("p", null, L10(a.d))
+            );
+            if (a.link) {
+              const ln = el("a", null, t("achView"));
+              ln.href = a.link;
+              ln.target = "_blank";
+              ln.rel = "noopener";
+              txt.append(ln);
+            }
+            card.append(m, txt);
+            grid.append(card);
+          });
+          grp.append(el("span", "label", t("achGroups")[g]), grid);
+          body.append(grp);
+        });
+      }
+
+      // ---------- Skill tree ----------
+      let treeSel = "core";
+
+      function treeLit(id) {
+        const lit = new Set();
+        const walk = (k) => {
+          if (lit.has(k)) return;
+          lit.add(k);
+          TN[k].parents.forEach(walk);
+        };
+        walk(id);
+        return lit;
+      }
+
+      const AREAS = [
+        { id: "tree", branches: BRANCHES, label: "treeBranches", main: true },
+        { id: "treeSub", branches: SUB_BRANCHES, label: "subBranches", main: false },
+      ];
+      const areaOf = (n) => (n.area === "sub" ? AREAS[1] : AREAS[0]);
+      const branchName = (n) => (n.b ? t(n.area === "sub" ? "subBranches" : "arsenalGroups")[n.b] : t("treeCore"));
+
+      function renderTree() {
+        AREAS.forEach((A) => $(A.id).querySelectorAll(".tNode, .tBranch").forEach((n) => n.remove()));
+        TREE.forEach((n) => {
+          const A = areaOf(n);
+          const rk = rankOf(n.score);
+          const b = el("button", "tNode" + (n.b ? "" : " core"));
+          b.type = "button";
+          b.dataset.id = n.id;
+          b.style.setProperty("--rc", RANK_COLOR[rk]);
+          b.style.gridColumn = n.b ? String(A.branches.indexOf(n.b) + 1) : "1 / -1";
+          b.style.gridRow = String(A.main ? n.tier + 1 : n.tier);
+          b.setAttribute("aria-label", t("nodeAria")(nodeName(n), rk, n.score));
+          const ic = el("span", "tIcon");
+          ic.append(iconEl(n.icon, "tGlyph"), el("span", "tRk", rk));
+          b.append(ic, el("span", "tName", nodeName(n)));
+          b.addEventListener("click", () => selectNode(n.id));
+          $(A.id).append(b);
+        });
+        AREAS.forEach((A) => {
+          const deepest = Math.max(...TREE.filter((n) => areaOf(n) === A).map((n) => n.tier));
+          A.labelRow = A.main ? deepest + 2 : deepest + 1;
+        });
+        AREAS.forEach((A) =>
+          A.branches.forEach((g, i) => {
+            const l = el("span", "tBranch", t(A.label)[g]);
+            l.style.gridColumn = String(i + 1);
+            l.style.gridRow = String(A.labelRow);
+            $(A.id).append(l);
+          })
+        );
+        $("treePts").textContent = t("treePts")(TREE.length, TREE.filter((n) => n.score >= 72).length);
+        selectNode(treeSel);
+      }
+
+      function selectNode(id) {
+        treeSel = id;
+        const lit = treeLit(id);
+        document.querySelectorAll(".tree .tNode").forEach((b) => {
+          b.setAttribute("aria-pressed", String(b.dataset.id === id));
+          b.classList.toggle("lit", lit.has(b.dataset.id));
+        });
+        renderTreeInfo(TN[id]);
+        drawLinks();
+      }
+
+      function drawLinks() {
+        const lit = treeLit(treeSel);
+        AREAS.forEach((A) => {
+          const tree = $(A.id);
+          const svg = tree.querySelector(".treeLinks");
+          const box = tree.getBoundingClientRect();
+          if (!box.width) return;
+          svg.setAttribute("viewBox", `0 0 ${box.width} ${box.height}`);
+          svg.textContent = "";
+          const geo = (id) => {
+            const btn = tree.querySelector(`[data-id="${id}"]`);
+            const r = btn.querySelector(".tIcon").getBoundingClientRect();
+            const o = btn.getBoundingClientRect();
+            return {
+              l: r.left - box.left, r: r.right - box.left,
+              cx: (r.left + r.right) / 2 - box.left, cy: (r.top + r.bottom) / 2 - box.top,
+              t: o.top - box.top, b: o.bottom - box.top,
+            };
+          };
+          TREE.filter((n) => areaOf(n) === A).forEach((n) =>
+            n.parents.forEach((pid) => {
+              const p = geo(pid), c = geo(n.id);
+              let d;
+              if (Math.abs(p.cy - c.cy) < 2) {
+                const [x1, x2] = p.cx < c.cx ? [p.r + 2, c.l - 2] : [p.l - 2, c.r + 2];
+                d = `M${x1} ${p.cy} L${x2} ${c.cy}`;
+              } else if (Math.abs(p.cx - c.cx) < 2) {
+                d = `M${p.cx} ${p.b + 2} L${c.cx} ${c.t - 2}`;
+              } else {
+                const my = (p.b + c.t) / 2;
+                d = `M${p.cx} ${p.b + 2} C${p.cx} ${my} ${c.cx} ${my} ${c.cx} ${c.t - 2}`;
+              }
+              const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+              path.setAttribute("d", d);
+              if (lit.has(n.id) && lit.has(pid)) path.setAttribute("class", "on");
+              svg.append(path);
+            })
+          );
+        });
+      }
+
+      function renderTreeInfo(n) {
+        const box = $("treeInfo");
+        box.textContent = "";
+        const rk = rankOf(n.score);
+        box.style.setProperty("--rc", RANK_COLOR[rk]);
+        const head = el("div", "tiHead");
+        const ic = el("span", "tIcon");
+        ic.style.setProperty("--rc", RANK_COLOR[rk]);
+        ic.append(iconEl(n.icon, "tGlyph"));
+        const h = el("div");
+        h.append(el("span", "label", branchName(n)), el("strong", null, nodeName(n)));
+        head.append(ic, h);
+        const rr = el("div", "tiRank");
+        const badge = el("span", "rank", rk);
+        badge.dataset.r = rk;
+        const bar = el("div", "skillBar");
+        const fill = el("i");
+        fill.style.width = n.score + "%";
+        bar.append(fill);
+        rr.append(badge, el("b", null, String(n.score)), bar);
+        const links = el("div", "tiLinks");
+        const names = (ids) => ids.map((k) => nodeName(TN[k])).join(" · ");
+        const kids = TREE.filter((k) => k.parents.includes(n.id)).map((k) => k.id);
+        if (n.parents.length) {
+          const f = el("div");
+          f.append(el("span", "label", t("treeFrom")), document.createTextNode(names(n.parents)));
+          links.append(f);
+        }
+        const l = el("div");
+        l.append(el("span", "label", t("treeLeads")), document.createTextNode(kids.length ? names(kids) : t("treeEnd")));
+        links.append(l);
+        box.append(head, rr, el("p", null, n.d[lang]), links);
+      }
+
+      const treeRO = new ResizeObserver(() => drawLinks());
+      AREAS.forEach((A) => treeRO.observe($(A.id)));
+      document.fonts?.ready.then(drawLinks);
+
+      // ---------- Inventory ----------
+      let invTab = "all";
+      let invSel = "React";
+
+      // Where an item was used, when it isn't the CDE project.
+      const ALL = { vi: "Mọi dự án", en: "Every project" };
+      const R1 = { vi: "NCKH 2020–21", en: "2020–21 research" };
+      const R3 = { vi: "NCKH 2023 · JunctionX", en: "2023 research · JunctionX" };
+      const ITEM_SRC = {
+        Postman: "VSEC", PM2: "VSEC", Express: "IKAME · VSEC", "Redux Toolkit": "IKAME",
+        GraphQL: "Appota", Kong: "Appota", Debezium: "Appota · ADSCivil CDE",
+        "Next.js": "BIM-hub", "Fluent UI": "BIM-hub", "IFC.js": "BIM-hub", IndexedDB: "BIM-hub",
+        "HTML · CSS": "Freelance", Bootstrap: "Freelance", MySQL: "Freelance",
+        "Git · GitHub": ALL, "Linux · Ubuntu": ALL,
+        YOLOv8: { vi: "NCKH 2023", en: "2023 research" }, "Neural nets": { vi: "NCKH 2022", en: "2022 research" },
+        AWS: R3, Lambda: R3, "API Gateway": R3, S3: R3, EC2: R3, SageMaker: R3,
+        "C/C++": R1, Arduino: R1, "RFID RC522": R1,
+      };
+
+      function renderInventory() {
+        const tabs = $("invTabs");
+        tabs.textContent = "";
+        ["all", ...INV_GROUPS].forEach((g) => {
+          const b = el("button", null, g === "all" ? t("invAll") : t("arsenalGroups")[g]);
+          b.type = "button";
+          b.setAttribute("aria-pressed", String(g === invTab));
+          b.addEventListener("click", () => {
+            invTab = g;
+            renderInventory();
+          });
+          tabs.append(b);
+        });
+
+        const list = ITEMS.filter((it) => invTab === "all" || it[1] === invTab);
+        if (!list.some((it) => it[0] === invSel)) invSel = list[0][0];
+        const total = Math.max(24, Math.ceil(list.length / 12) * 12);
+        $("invCount").textContent = t("invSlots")(list.length, total);
+
+        const grid = $("invGrid");
+        grid.textContent = "";
+        list.forEach((it) => {
+          const [name, , r, icon] = it;
+          const b = el("button", "slot");
+          b.type = "button";
+          b.style.setProperty("--rc", RARITY[r]);
+          b.title = name;
+          b.setAttribute("aria-label", `${name} · ${t("rarity")[r]}`);
+          b.setAttribute("aria-pressed", String(name === invSel));
+          b.append(iconEl(icon, "tGlyph"));
+          const pick = () => {
+            if (invSel === name) return;
+            invSel = name;
+            grid.querySelectorAll(".slot[aria-pressed]").forEach((s) =>
+              s.setAttribute("aria-pressed", String(s === b))
+            );
+            renderInvCard();
+          };
+          b.addEventListener("click", pick);
+          b.addEventListener("mouseenter", pick);
+          grid.append(b);
+        });
+        for (let i = list.length; i < total; i++) {
+          const e = el("span", "slot empty");
+          e.setAttribute("aria-hidden", "true");
+          grid.append(e);
+        }
+
+        const legend = $("invLegend");
+        legend.textContent = "";
+        Object.keys(RARITY).forEach((r) => {
+          const sp = el("span", null, t("rarity")[r]);
+          sp.style.setProperty("--rc", RARITY[r]);
+          legend.append(sp);
+        });
+        renderInvCard();
+      }
+
+      function renderInvCard() {
+        const it = ITEMS.find((x) => x[0] === invSel);
+        const [name, g, r, icon, vi, en] = it;
+        const box = $("invCard");
+        box.textContent = "";
+        box.style.setProperty("--rc", RARITY[r]);
+        const head = el("div", "icHead");
+        const sl = el("span", "slot");
+        sl.style.setProperty("--rc", RARITY[r]);
+        sl.append(iconEl(icon, "tGlyph"));
+        const h = el("div");
+        const meta = el("div", "icMeta");
+        meta.append(el("span", "icStars", "★".repeat(STARS[r]) + "☆".repeat(4 - STARS[r])), document.createTextNode(` ${t("rarity")[r]}`));
+        h.append(el("strong", null, name), meta);
+        head.append(sl, h);
+        const foot = el("div", "icFoot");
+        foot.append(document.createTextNode(`${t("arsenalGroups")[g].toUpperCase()} · ${t("invUsedIn")} `), el("b", null, L10(ITEM_SRC[name] || "ADSCivil CDE")));
+        box.append(head, el("p", null, lang === "vi" ? vi : en), foot);
+      }
+
       // ---------- Language switch ----------
       function applyLang() {
         document.documentElement.lang = lang;
@@ -2151,6 +4295,10 @@
         );
         renderStats();
         renderSkills();
+        renderTree();
+        renderCampaign();
+        renderAchievements();
+        renderInventory();
         renderOracle();
         renderSpots();
         renderLog();
