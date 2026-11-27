@@ -469,6 +469,175 @@
         font-weight: 500;
       }
 
+      /* ---------- Forge (crafted items / featured repos) ---------- */
+      .forgeHead {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 14px;
+      }
+
+      .forgeHead .count {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        color: var(--dim);
+      }
+
+      .forgeList {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .item {
+        --rc: var(--r-s);
+        position: relative;
+        display: grid;
+        grid-template-columns: 56px 1fr;
+        gap: 16px;
+        padding: 18px 18px 16px;
+        background: rgba(14, 24, 50, 0.55);
+        border: 1px solid color-mix(in srgb, var(--rc) 35%, transparent);
+        clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+        transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+      }
+
+      .item.violet {
+        --rc: var(--r-a);
+      }
+
+      .item::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 12px;
+        bottom: 0;
+        width: 2px;
+        background: var(--rc);
+        box-shadow: 0 0 10px color-mix(in srgb, var(--rc) 70%, transparent);
+      }
+
+      .item:hover,
+      .item:focus-within {
+        background: rgba(14, 24, 50, 0.9);
+        border-color: color-mix(in srgb, var(--rc) 70%, transparent);
+        transform: translateY(-2px);
+      }
+
+      .item .icon {
+        width: 56px;
+        height: 56px;
+        display: grid;
+        place-items: center;
+        font-size: 24px;
+        color: var(--rc);
+        border: 1px solid color-mix(in srgb, var(--rc) 45%, transparent);
+        background: color-mix(in srgb, var(--rc) 10%, transparent);
+        box-shadow: inset 0 0 14px color-mix(in srgb, var(--rc) 25%, transparent);
+        text-shadow: 0 0 12px color-mix(in srgb, var(--rc) 70%, transparent);
+      }
+
+      .item .body {
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .item .name {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .item .name a {
+        color: var(--text);
+        text-decoration: none;
+      }
+
+      /* Whole card is clickable via the primary (website) link */
+      .item .name a::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+      }
+
+      .item:hover .name a {
+        color: var(--cyan);
+      }
+
+      .item .tag {
+        font-family: var(--mono);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        padding: 2px 7px;
+        color: var(--rc);
+        border: 1px solid color-mix(in srgb, var(--rc) 60%, transparent);
+        background: color-mix(in srgb, var(--rc) 12%, transparent);
+      }
+
+      .item .tech {
+        margin-top: 4px;
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        color: var(--dim);
+      }
+
+      .item .desc {
+        display: block;
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: 14.5px;
+        line-height: 1.5;
+        font-weight: 500;
+      }
+
+      .item .foot {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-top: auto;
+        padding-top: 14px;
+        font-family: var(--mono);
+        font-size: 12px;
+        letter-spacing: 0.1em;
+      }
+
+      .item .foot .site {
+        color: var(--blue);
+        font-weight: 700;
+        transition: color 160ms ease;
+      }
+
+      .item:hover .foot .site {
+        color: var(--cyan);
+      }
+
+      .item .foot .repo {
+        position: relative;
+        z-index: 1;
+        margin-left: auto;
+        color: var(--muted);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+      }
+
+      .item .foot .repo:hover,
+      .item .foot .repo:focus-visible {
+        color: var(--cyan);
+        outline: none;
+      }
+
       /* ---------- Skill status ---------- */
       .skillHead {
         display: flex;
@@ -2254,6 +2423,9 @@
       }
 
       @media (max-width: 680px) {
+        .forgeList {
+          grid-template-columns: 1fr;
+        }
         .wrap {
           padding: 60px 16px 40px;
         }
@@ -2452,8 +2624,52 @@
           </div>
         </section>
 
+        <!-- FORGE (featured repos) -->
+        <section class="win span-12" style="--i: 4" data-i18n-aria="forgeTitle">
+          <div class="win-in">
+            <div class="win-title" data-i18n="forgeTitle"></div>
+            <div class="forgeHead">
+              <span class="label" data-i18n="forgeSub"></span>
+              <span class="count" data-i18n="forgeCount"></span>
+            </div>
+            <div class="forgeList">
+              <article class="item">
+                <span class="icon"><i class="fa-solid fa-gauge-high"></i></span>
+                <div class="body">
+                  <div class="name">
+                    <a href="https://cc-monitor.online/" target="_blank" rel="noopener">cc-monitor</a>
+                    <span class="tag" data-i18n="forgeNew"></span>
+                  </div>
+                  <span class="tech">Rust · Tauri · MIT</span>
+                  <span class="desc" data-i18n="ccMonitorDesc"></span>
+                  <div class="foot">
+                    <span class="site" data-i18n="visitSite"></span>
+                    <a class="repo" href="https://github.com/wik1ngst-1103/cc-monitor" target="_blank" rel="noopener" aria-label="cc-monitor on GitHub"><i class="fa-brands fa-github"></i>GitHub</a>
+                  </div>
+                </div>
+              </article>
+              <article class="item violet">
+                <span class="icon"><i class="fa-solid fa-map-location-dot"></i></span>
+                <div class="body">
+                  <div class="name">
+                    <a href="https://wik1ngst-1103.github.io/plan-atlas/" target="_blank" rel="noopener">plan-atlas</a>
+                    <span class="tag" data-i18n="forgeNew"></span>
+                  </div>
+                  <span class="tech">Rust · Svelte · MIT</span>
+                  <span class="desc" data-i18n="planAtlasDesc"></span>
+                  <div class="foot">
+                    <span class="site" data-i18n="visitSite"></span>
+                    <a class="repo" href="https://github.com/wik1ngst-1103/plan-atlas" target="_blank" rel="noopener" aria-label="plan-atlas on GitHub"><i class="fa-brands fa-github"></i>GitHub</a>
+                  </div>
+                </div>
+              </article>
+            </div>
+            <div class="win-foot">@wist · <span data-i18n="synced"></span> <span class="syncDate"></span></div>
+          </div>
+        </section>
+
         <!-- SKILL STATUS -->
-        <section class="win span-12" style="--i: 4" data-i18n-aria="skillsTitle">
+        <section class="win span-12" style="--i: 6" data-i18n-aria="skillsTitle">
           <div class="win-in">
             <div class="win-title" data-i18n="skillsTitle"></div>
             <div class="skillHead">
@@ -2484,7 +2700,7 @@
         </section>
 
         <!-- SKILL TREE -->
-        <section class="win span-12" style="--i: 5" data-i18n-aria="treeTitle">
+        <section class="win span-12" style="--i: 6" data-i18n-aria="treeTitle">
           <div class="win-in">
             <div class="win-title" data-i18n="treeTitle"></div>
             <div class="treeHead">
@@ -2504,7 +2720,7 @@
         </section>
 
         <!-- QUEST CHAIN (work experience, from CV) -->
-        <section class="win span-12" style="--i: 6" data-i18n-aria="jTitle">
+        <section class="win span-12" style="--i: 7" data-i18n-aria="jTitle">
           <div class="win-in">
             <div class="win-title" data-i18n="jTitle"></div>
             <div class="campHead">
@@ -2524,7 +2740,7 @@
         </section>
 
         <!-- MAIN CAMPAIGN (work project) -->
-        <section class="win span-12" style="--i: 7" data-i18n-aria="campaignTitle">
+        <section class="win span-12" style="--i: 8" data-i18n-aria="campaignTitle">
           <div class="win-in">
             <div class="win-title" data-i18n="campaignTitle"></div>
             <div class="campHead">
@@ -2544,7 +2760,7 @@
         </section>
 
         <!-- ACHIEVEMENTS (from CV) -->
-        <section class="win span-12" style="--i: 8" data-i18n-aria="achTitle">
+        <section class="win span-12" style="--i: 9" data-i18n-aria="achTitle">
           <div class="win-in">
             <div class="win-title" data-i18n="achTitle"></div>
             <div class="achHead">
@@ -2558,7 +2774,7 @@
         </section>
 
         <!-- ARSENAL (tools in use, game inventory) -->
-        <section class="win span-12" style="--i: 9" data-i18n-aria="arsenalTitle">
+        <section class="win span-12" style="--i: 10" data-i18n-aria="arsenalTitle">
           <div class="win-in">
             <div class="win-title" data-i18n="arsenalTitle"></div>
             <div class="inv">
@@ -2577,7 +2793,7 @@
         </section>
 
         <!-- SỞ THÍCH · GAME (Valorant live via /api/valorant) -->
-        <section class="win span-12" style="--i: 10" data-i18n-aria="gameTitle">
+        <section class="win span-12" style="--i: 11" data-i18n-aria="gameTitle">
           <div class="win-in">
             <div class="win-title" data-i18n="gameTitle"></div>
             <div class="valHead">
@@ -2596,15 +2812,15 @@
         </section>
 
         <!-- SPOTLIGHTS (GitHub repos) -->
-        <section class="win span-6" style="--i: 11" data-i18n-aria="spotlight">
+        <section class="win span-6" style="--i: 12" data-i18n-aria="spotlight">
           <div class="win-in" id="spot0"></div>
         </section>
-        <section class="win span-6" style="--i: 12" data-i18n-aria="spotlight">
+        <section class="win span-6" style="--i: 13" data-i18n-aria="spotlight">
           <div class="win-in" id="spot1"></div>
         </section>
 
         <!-- SYSTEM LOG (GitHub events) -->
-        <section class="win span-12" style="--i: 13" data-i18n-aria="logTitle">
+        <section class="win span-12" style="--i: 14" data-i18n-aria="logTitle">
           <div class="win-in">
             <div class="win-title" data-i18n="logTitle"></div>
             <div class="log" id="log"></div>
@@ -2641,6 +2857,13 @@
           repos: "Repo",
           followers: "Người theo dõi",
           lore: "Xây dựng web app từ đầu đến cuối: React ở frontend, NestJS ở backend, MongoDB và Redis lưu dữ liệu, triển khai bằng Docker và Kubernetes. Thế mạnh là viewer 3D/GIS trên trình duyệt và trợ lý AI có công cụ.",
+          forgeTitle: "[ Vật phẩm chế tác ]",
+          forgeSub: "Dự án mã nguồn mở · có website riêng",
+          visitSite: "VÀO WEBSITE ›",
+          forgeCount: "2 MÓN · MỞ NGUỒN",
+          forgeNew: "MỚI",
+          ccMonitorDesc: "Trung tâm điều khiển desktop cho Claude Code: theo dõi session, sub-agent, workflow và tác vụ nền theo thời gian thực; quản lý skill, plugin, MCP server và agent; chạy session với model và effort tuỳ chọn.",
+          planAtlasDesc: "Không gian làm việc cục bộ cho các kế hoạch triển khai mà Claude Code viết ra: sắp xếp theo dự án, đọc như tài liệu, theo dõi task và xem subagent làm việc trực tiếp. Một binary Rust duy nhất.",
           questTitle: "[ Nhiệm vụ hoàn thành ]",
           joinParty: "Vào party",
           cleared: "HOÀN THÀNH 4 / 4",
@@ -2784,6 +3007,13 @@
           repos: "Repos",
           followers: "Followers",
           lore: "Builds web apps end to end — React on the front, NestJS behind it, MongoDB and Redis underneath, shipped with Docker and Kubernetes. Strongest at in-browser 3D/GIS viewers and tool-using AI assistants.",
+          forgeTitle: "[ Crafted items ]",
+          forgeSub: "Open-source projects · with their own sites",
+          visitSite: "VISIT SITE ›",
+          forgeCount: "2 ITEMS · OPEN SOURCE",
+          forgeNew: "NEW",
+          ccMonitorDesc: "Desktop control center for Claude Code: watch sessions, sub-agents, workflows and background tasks live; manage skills, plugins, MCP servers and agents; run sessions with your choice of model and effort.",
+          planAtlasDesc: "A local workspace for the implementation plans Claude Code writes: organize them by project, read them as documents, track tasks and watch subagents work live. Single Rust binary.",
           questTitle: "[ Quest Complete ]",
           joinParty: "Join the party",
           cleared: "CLEARED 4 / 4",
